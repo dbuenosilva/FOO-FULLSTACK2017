@@ -1,6 +1,6 @@
 package GwMarket;
 
-public class Item {
+public class Item extends ItemDeLista {
 
     private Produto produto;
     private double quantidade;
@@ -10,12 +10,12 @@ public class Item {
     public Item() {
     }
 
-    public Item(Produto produto, double quantidade, UnidadeDeMedida unidadeDeMedida, double valorUnitario) {
+    public Item(Produto produto, double quantidade, UnidadeDeMedida unidadeDeMedida) {
 
         this.produto = produto;
         this.quantidade = quantidade;
-        this.produto = produto;
-        this.valorUnitario = valorUnitario;
+        this.unidadeDeMedida = unidadeDeMedida;
+        this.valorUnitario = buscaPrecoProduto(unidadeDeMedida);;
 
     }
 
@@ -40,7 +40,7 @@ public class Item {
     }
 
     public void setValorUnitario(double valorUnitario) {
-        this.valorUnitario = valorUnitario;
+        this.valorUnitario = buscaPrecoProduto(this.unidadeDeMedida);
     }
 
     public UnidadeDeMedida getUnidadeDeMedida() {
@@ -51,8 +51,16 @@ public class Item {
         this.unidadeDeMedida = unidadeDeMedida;
     }
 
-    public double buscaPrecoProduto() {
-        return (this.produto.getPrecoNaPrimeiraUnidadeDeMedida());
+    private double buscaPrecoProduto( UnidadeDeMedida unidadeDeMedida) {
+    	
+    	if (this.produto.getPrimeiraUnidadeDeMedida().equals(unidadeDeMedida)) {
+    		return (this.produto.getPrecoNaPrimeiraUnidadeDeMedida());	
+    	}
+    	else if (this.produto.getSegundaUnidadeDeMedida().equals(unidadeDeMedida)) {
+    		return (this.produto.getPrecoNaSegundaUnidadeDeMedida());
+    	}
+    	
+    	return(0);
     }
 
 }

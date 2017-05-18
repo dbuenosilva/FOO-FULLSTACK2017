@@ -2,96 +2,31 @@
 
 package GwMarket;
 
-public class Cliente implements Pessoa  {
+public class Cliente extends Pessoa  {
 
 	private int codigo;
+	private String endereco;
 
-	public Cliente(int codigo, String nome, int nascimento, String cpf, String rg) {
-
+	public Cliente(int codigo, String nome, Data nascimento, String cpf, String rg, String endereco) {
+		super(nome, nascimento, cpf, rg);
+		this.codigo = codigo;
+		this.endereco = endereco;
 	}
 
 	public int getCodigo() {
-		return 0;
+		return(this.codigo);
 	}
 
 	public void setCodigo(int codigo) {
-
+		this.codigo = codigo;
 	}
 
-
-	/**
-	 * @see Pessoa #Pessoa(String, int, String, String)
-	 * 
-	 *  
-	 */
-	public Pessoa(String nome, int nascimento, String cpf, String rg) {
-
+	public String getEndereco( ) {
+		return(this.endereco);
 	}
-
-
-	/**
-	 * @see Pessoa #getNome()
-	 */
-	public String getNome() {
-		return null;
-	}
-
-
-	/**
-	 * @see Pessoa #setNome(String)
-	 */
-	public void setNome(String nome) {
-
-	}
-
-
-	/**
-	 * @see Pessoa #getNascimento()
-	 */
-	public int getNascimento() {
-		return 0;
-	}
-
-
-	/**
-	 * @see Pessoa #setNascimento(int)
-	 */
-	public void setNascimento(int nascimento) {
-
-	}
-
-
-	/**
-	 * @see Pessoa #getCPF()
-	 */
-	public String getCPF() {
-		return null;
-	}
-
-
-	/**
-	 * @see Pessoa #setCPF(String)
-	 */
-	public void setCPF(String cpf) {
-
-	}
-
-
-	/**
-	 * @see Pessoa #getRg()
-	 */
-	public String getRg() {
-		return null;
-	}
-
-
-	/**
-	 * @see Pessoa #setRg(String)
-	 * 
-	 *  
-	 */
-	public void setRg(String rg) {
-
+	
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 }

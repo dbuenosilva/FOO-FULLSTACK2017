@@ -1,12 +1,12 @@
 package GwMarket;
 
-public class Venda {
+public class Venda extends ItemDeLista {
 
     private double valorTotalDaVenda;
     private FormaDePagamento formaDePagamento;
     private double valorEntreguePeloCliente;
     private Data data;
-    //private ListaDeItens itens[];
+    private ListaDeObjetos itens;
     private Caixa caixa;
     private Funcionario funcionario;
 
@@ -79,5 +79,10 @@ public class Venda {
         }
         return (result);
     }
+    
+    public ListaDeObjetos getItens() {
+    	return( this.itens );
+    }
+    
 
 }

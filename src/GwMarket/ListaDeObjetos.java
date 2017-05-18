@@ -1,17 +1,36 @@
 
 package GwMarket;
-public abstract class ListaDeObjetos {
+
+import java.util.LinkedList;
+
+public class ListaDeObjetos {
 
 	private int qtdAtual;
-
-	public ListaDePessoas() {
-
+	private LinkedList<ItemDeLista> listaDeObjetos;
+	
+	public ListaDeObjetos() {
+		this.listaDeObjetos = new LinkedList<ItemDeLista>();
+		this.qtdAtual = 0;
 	}
 
-	public abstract void imprimeCadastro();
-
+	public void adicionaNaLista( ItemDeLista obj ) {
+		listaDeObjetos.add(obj);
+	}
+	
+	public void removeDaLista( ItemDeLista obj ) {
+		listaDeObjetos.remove(obj);
+	}
+	
 	public int getQtdAtual() {
-		return 0;
+		return(this.qtdAtual);
 	}
 
+	public LinkedList<ItemDeLista> getLista() {
+		return(this.listaDeObjetos);
+	}
+	
+	public void imprimeCadastro() {
+		
+	}
+	
 }
