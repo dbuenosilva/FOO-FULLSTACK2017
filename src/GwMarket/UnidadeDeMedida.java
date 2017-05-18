@@ -1,35 +1,42 @@
-
 package GwMarket;
+
 public class UnidadeDeMedida {
 
-	private int id;
+    private int id;
+    private String descricao;
+    private boolean utilizaBalaca;
 
-	private String descricao;
+    public UnidadeDeMedida() {
+    }
 
-	private boolean utilizaBalaca;
+    public UnidadeDeMedida(int id, String descricao, boolean utilizaBalanca) {
+        this.id = id;
+        this.descricao = descricao;
+        this.utilizaBalaca = utilizaBalanca;
+    }
 
-	public int getId() {
-		return 0;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	}
+    public String getDescricao() {
+        return descricao;
+    }
 
-	public String getDescricao() {
-		return null;
-	}
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-	public void setDescricao(String descricao) {
+    public boolean isUtilizaBalaca() {
+        return utilizaBalaca;
+    }
 
-	}
-
-	public boolean getUtilizaBalanca() {
-		return false;
-	}
-
-	public void setUtilizaBalanca(boolean utilizaBalanca) {
-
-	}
+    public void setUtilizaBalaca(boolean utilizaBalaca) {
+        this.utilizaBalaca = utilizaBalaca;
+    }
 
 }

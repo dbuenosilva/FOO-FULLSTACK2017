@@ -1,35 +1,47 @@
-
 package GwMarket;
+
 public class FormaDePagamento {
 
-	private int id;
+    private int id;
+    private String descricao;
+    private boolean permiteTroco;
+    
+    public FormaDePagamento(){}
+    
+    public FormaDePagamento(int id, String descricao, boolean permiteTroco){
+        
+        this.id = id;
+        this.descricao=descricao;
+        this.permiteTroco = permiteTroco;
+        
+    }
 
-	private String descricao;
+    public int getId() {
+        return(this.id);
+    }
 
-	private boolean permiteTroco();
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public int getId() {
-		return 0;
-	}
+    public String getDescricao() {
+        return(this.descricao);
+    }
 
-	public void setId(int id) {
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-	}
+    public boolean getPermiteTroco() {
+        return(this.permiteTroco);
+    }
 
-	public String getDescricao() {
-		return null;
-	}
-
-	public void setDescricao() {
-
-	}
-
-	public boolean getPermiteTroco() {
-		return false;
-	}
-
-	public void setPermiteTroco(boolean permiteTroco) {
-
-	}
-
+    public void setPermiteTroco(boolean permiteTroco) {
+        this.permiteTroco = permiteTroco;
+    }
+    
+    public String mostraDados(){  
+        return("Codigo : "+getId()+", Descrição : "+getDescricao());
+    }
 }
+   

@@ -1,59 +1,83 @@
-
 package GwMarket;
+
 public class Venda {
 
-	private double valorTotalDaVenda;
+    private double valorTotalDaVenda;
+    private FormaDePagamento formaDePagamento;
+    private double valorEntreguePeloCliente;
+    private Data data;
+    //private ListaDeItens itens[];
+    private Caixa caixa;
+    private Funcionario funcionario;
 
-	private FormaDePagamento formaDePagamento;
+    public Venda() {
+    }
 
-	private double valorEntreguePeloCliente;
+    public Venda(double valorTotalDaVenda, FormaDePagamento formaDePagamento, double valorEntreguePeloCliente, Data data, Caixa caixa, Funcionario funcionario) {
 
-	private int data;
+        this.valorTotalDaVenda = valorTotalDaVenda;
+        this.formaDePagamento = formaDePagamento;
+        this.valorEntreguePeloCliente = valorEntreguePeloCliente;
+        this.data = data;
+        this.caixa = caixa;
+        this.funcionario = funcionario;
 
-	private ListaDeItens itens[];
+    }
 
-	private Caixa caixa;
+    public double getValorTotalDaVenda() {
+        return valorTotalDaVenda;
+    }
 
-	private Funcionario funcionario;
+    public void setValorTotalDaVenda(double valorTotalDaVenda) {
+        this.valorTotalDaVenda = valorTotalDaVenda;
+    }
 
-	public Venda() {
+    public FormaDePagamento getFormaDePagamento() {
+        return formaDePagamento;
+    }
 
-	}
+    public void setFormaDePagamento(FormaDePagamento formaDePagamento) {
+        this.formaDePagamento = formaDePagamento;
+    }
 
-	private double getValorTotaDaVenda() {
-		return 0;
-	}
+    public double getValorEntreguePeloCliente() {
+        return valorEntreguePeloCliente;
+    }
 
-	private void setValorTotalDaVenda(double valorTotalDaVenda) {
+    public void setValorEntreguePeloCliente(double valorEntreguePeloCliente) {
+        this.valorEntreguePeloCliente = valorEntreguePeloCliente;
+    }
 
-	}
+    public Data getData() {
+        return data;
+    }
 
-	public FormaDePagamento getFomaDePagamento() {
-		return null;
-	}
+    public void setData(Data data) {
+        this.data = data;
+    }
 
-	public void setFormaDePagamento(FormaDePagamento formaDePagamento) {
+    public Caixa getCaixa() {
+        return caixa;
+    }
 
-	}
+    public void setCaixa(Caixa caixa) {
+        this.caixa = caixa;
+    }
 
-	public double getValorEntreguePeloCliente() {
-		return 0;
-	}
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
 
-	public void setValorEntreguePeloCliente(double valorEntreguePeloCliente) {
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
 
-	}
-
-	public double calculaTroco() {
-		return 0;
-	}
-
-	public int getData() {
-		return 0;
-	}
-
-	public void setData(int data) {
-
-	}
+    public double calculaTroco() {
+        double result = 0;
+        if (this.formaDePagamento.getPermiteTroco()) {
+            result = this.valorEntreguePeloCliente - this.valorTotalDaVenda;
+        }
+        return (result);
+    }
 
 }

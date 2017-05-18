@@ -1,39 +1,42 @@
-
-
 package GwMarket;
-
-
 
 public class Balanca {
 
-	private int id;
+    private int id;
+    private String descricao;
+    private double peso;
 
-	private String descricao;
+    public Balanca() {
+    }
 
-	private double peso;
+    public Balanca(int id, String descricao, double peso) {
+        this.id = id;
+        this.descricao = descricao;
+        this.peso = peso;
+    }
 
-	public int getId() {
-		return 0;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	}
+    public String getDescricao() {
+        return descricao;
+    }
 
-	public String getDescricao() {
-		return null;
-	}
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
-	public void setDescricao(String descricao) {
+    public double getPeso() {
+        return peso;
+    }
 
-	}
-
-	public double getPeso() {
-		return 0;
-	}
-
-	public void setPeso(double peso) {
-
-	}
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
 
 }
