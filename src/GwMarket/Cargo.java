@@ -1,19 +1,24 @@
 package GwMarket;
 
-public class Cargo {
+public class Cargo extends ItemDeLista {
 
     private int id;
     private String descricao;
     private boolean acessoVenda;
     private boolean acessoAoEstoque;
+
+    public Cargo() {
+    }
     
-    public Cargo(){}
-    
-    public Cargo(int id,String descricao,boolean acessoVenda,boolean acessoAoEstoque){
-        this.id =id;
-        this.descricao=descricao;
-        this.acessoVenda=acessoVenda;
-        this.acessoAoEstoque=acessoAoEstoque;
+    public Cargo (int id){
+        this.id= id;
+    }
+
+    public Cargo(int id, String descricao, boolean acessoVenda, boolean acessoAoEstoque) {
+        this.id = id;
+        this.descricao = descricao;
+        this.acessoVenda = acessoVenda;
+        this.acessoAoEstoque = acessoAoEstoque;
     }
 
     public int getId() {
@@ -46,6 +51,11 @@ public class Cargo {
 
     public void setAcessoAoEstoque(boolean acessoAoEstoque) {
         this.acessoAoEstoque = acessoAoEstoque;
+    }
+
+    @Override
+    public String toString() {
+        return ("Codigo : " + getId() + ", Descrição : " + getDescricao() + (!this.getAcessoVenda() ? ", Vai ter acesso a Venda ? Não" : ", Vai ter acesso a Venda ? Sim") + (!this.getAcessoAoEstoque() ? ", Vai ter acesso ao estoque ? Não" : ", Vai ter acesso ao estoque ? Sim") + "\n");
     }
 
 }

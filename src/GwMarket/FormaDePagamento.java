@@ -1,6 +1,6 @@
 package GwMarket;
 
-public class FormaDePagamento {
+public class FormaDePagamento extends ItemDeLista {
 
     private int id;
     private String descricao;
@@ -40,8 +40,9 @@ public class FormaDePagamento {
         this.permiteTroco = permiteTroco;
     }
     
-    public String mostraDados(){  
-        return("Codigo : "+getId()+", Descrição : "+getDescricao());
+    @Override
+    public String toString(){  
+        return("Codigo : "+getId()+", Descrição : "+getDescricao()+( ! this.permiteTroco  ? ", Troco : Não" : ", Troco : Sim")+ "\n");
     }
 }
    
