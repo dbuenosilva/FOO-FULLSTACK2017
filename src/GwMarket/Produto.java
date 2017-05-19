@@ -1,6 +1,6 @@
 package GwMarket;
 
-public class Produto extends ListaDeObjetos{
+public class Produto extends ListaDeObjetos implements ListadeCodigosDeMensagensDeErros {
     
     private int id;
     private String descricao;
@@ -146,16 +146,43 @@ public class Produto extends ListaDeObjetos{
 
     }
 
-    public boolean checarEstoque(double quantidade, UnidadeDeMedida unidadeDeMedida) {
-        return true;
+    public int checarEstoque(double quantidade, UnidadeDeMedida unidadeDeMedida) {
+    	
+    	if(this.getPrimeiraUnidadeDeMedida().equals(unidadeDeMedida)) {
+    		if ( this.saldoDoEstoqueNaPrimeiraUnidadeDeMedida + quantidade >= 0 ) {
+    			return(SUCESSO);
+    		}
+    		else{
+    			return(ERR_SALDO);
+    		}	
+    	}
+    	else if(this.getSegundaUnidadeDeMedida().equals(unidadeDeMedida)) {
+    		if (this.getSaldoDoEstoqueNaSegundaUnidadeDeMedida() + quantidade >= 0 ) {
+    			return(SUCESSO);
+    		}
+    		else {
+    			return(ERR_SALDO);
+    		}
+    	}
+    	
+        return(ERR_UNIDADE_MEDIDA);
     }
 
-    public void atualizaEstoque(double quantidade) {
+    public int atualizaEstoque(double quantidade, UnidadeDeMedida unidadeDeMedida) {
 
+    	if(this.getPrimeiraUnidadeDeMedida().equals(unidadeDeMedida)) {
+    		this.saldoDoEstoqueNaPrimeiraUnidadeDeMedida += quantidade;		
+    	}
+    	else if(this.getSegundaUnidadeDeMedida().equals(unidadeDeMedida)) {
+    		setSaldoDoEstoqueNaSegundaUnidadeDeMedida( this.getSaldoDoEstoqueNaSegundaUnidadeDeMedida() + quantidade );	
+    	}
+    	else {
+    		return(ERR_UNIDADE_MEDIDA);
+    	}
+    	return(SUCESSO);
     }
 
     @Override
-
     public String toString() {
         return ("Codigo : " + getId() + ", Descrição : " + getDescricao() + ", Primeira Und.Medida" + getPrimeiraUnidadeDeMedida() + ", "
                 + "Segunda Und.Medida : " + getSegundaUnidadeDeMedida() + ", " + getPrecoNaPrimeiraUnidadeDeMedida() + ", "
