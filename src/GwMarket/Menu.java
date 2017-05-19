@@ -1,8 +1,9 @@
 package GwMarket;
 
 import java.util.Iterator;
-
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+
 
 public class Menu {
 
@@ -37,13 +38,16 @@ public class Menu {
     }
 
     public int subMenu() {
-        String opcaoDeMenuEmCaracter = JOptionPane.showInputDialog(null, "Digite 0 para Voltar ao menu inicial \n"
+        String opcaoDeMenuEmCaracter = JOptionPane.showInputDialog(null, " \n"
                 + "1 - Forma de Pagamento \n"
                 + "2 - Produtos \n"
                 + "3 - Clientes \n"
                 + "4 - Cargo \n"
                 + "5 - Unidade de Medida \n"
-                + "6 - Funcionario \n");
+                + "6 - Funcionario \n"
+                + "\n"
+                + "Digite 0 para Voltar ao menu inicial"
+        		);
 
         int opcaoDeMenuEmNumerosSub = Integer.parseInt(opcaoDeMenuEmCaracter);
         return (opcaoDeMenuEmNumerosSub);
@@ -62,21 +66,48 @@ public class Menu {
         String stringConstante = JOptionPane.showInputDialog("Digite o codigo do Produto : ");
         int codigoEmNumeros = Integer.parseInt(stringConstante);
         String descricao = JOptionPane.showInputDialog("Digite a descrição do produto : ");
-        stringConstante = JOptionPane.showInputDialog("Digite a Primeira Unidade de Medida do produto : ");
-        int primeiraUnidadeDeMedida = Integer.parseInt(stringConstante);
-        stringConstante = JOptionPane.showInputDialog("Digite a Segunda Unidade de Medida do produto : ");
-        int segundaUnidadeDeMedida = Integer.parseInt(stringConstante);
+        
+        // Monta combo para escolha da Unidade De Medida
+        final JComboBox<UnidadeDeMedida> combo = new JComboBox<UnidadeDeMedida>( );
+        Iterator i = cadastroDeUnidadeDeMedidas.getLista().iterator();
+        while (i.hasNext()) {
+            UnidadeDeMedida um = (UnidadeDeMedida) i.next();
+            combo.addItem(um);
+        }
+        String[] options = { "OK", "Cancel" };
+        JOptionPane.showOptionDialog(null, combo, "Escolha a Primeira Unidade de Medida do produto :",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                options, options[0]);
+        UnidadeDeMedida primeiraUnidadeDeMedida = (UnidadeDeMedida) combo.getSelectedItem();
+        //
+        
+        // Monta combo para escolha da Segunda Unidade De Medida
+        JOptionPane.showOptionDialog(null, combo, "Escolha a Segunda Unidade de Medida do produto :",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                options, options[0]);
+        UnidadeDeMedida segundaUnidadeDeMedida = (UnidadeDeMedida) combo.getSelectedItem();
+        //
+        
         stringConstante = JOptionPane.showInputDialog("Digite o Preço na primeira unidade de Medida : ");
         double precoNaPrimeiraUnidadeDeMedida = Double.parseDouble(stringConstante);
         stringConstante = JOptionPane.showInputDialog("Digite o Fator de Conversão do produto : ");
         double fatorDeConversao = Double.parseDouble(stringConstante);
-        stringConstante = JOptionPane.showInputDialog("Digite o Tipo de Conversão : : ");
-        char tipoDeConversao = stringConstante.charAt(0);
+        
+        // Monta combo para escolha da Unidade De Medida
+        final JComboBox<String> comboFator = new JComboBox<String>( );
+        comboFator.addItem("Multiplicação");
+        comboFator.addItem("Divisão");
+        JOptionPane.showOptionDialog(null, comboFator, "Tipo de Conversão :",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                options, options[0]);
+        Character tipoDeConversao = comboFator.getSelectedItem().toString().charAt(0);
+        //
+        
         stringConstante = JOptionPane.showInputDialog("Digite o Saldo do estoque do produto : ");
         double saldoDoEstoqueNaPrimeiraUnidadeDeMedida = Double.parseDouble(stringConstante);
 
-        cadastroDeProdutos.adicionaNaLista(new Produto(codigoEmNumeros, descricao, new UnidadeDeMedida(primeiraUnidadeDeMedida), 
-        		new UnidadeDeMedida(segundaUnidadeDeMedida), precoNaPrimeiraUnidadeDeMedida, fatorDeConversao, tipoDeConversao, saldoDoEstoqueNaPrimeiraUnidadeDeMedida));                                                                   
+        cadastroDeProdutos.adicionaNaLista(new Produto(codigoEmNumeros, descricao, primeiraUnidadeDeMedida,segundaUnidadeDeMedida, 
+        		precoNaPrimeiraUnidadeDeMedida, fatorDeConversao, tipoDeConversao, saldoDoEstoqueNaPrimeiraUnidadeDeMedida));                                                                   
     }
 
     public void cadCargo() {
@@ -209,5 +240,8 @@ public class Menu {
         String Logico = "";
         
     }
+    
+    
+    
 
 }

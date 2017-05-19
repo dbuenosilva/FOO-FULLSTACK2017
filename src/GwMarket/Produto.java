@@ -187,7 +187,7 @@ public class Produto extends ItemDeLista implements ListadeCodigosDeMensagensDeE
         return ("Codigo : " + getId() + ", Descrição : " + getDescricao() + ", Primeira Und.Medida" + getPrimeiraUnidadeDeMedida() + ", "
                 + "Segunda Und.Medida : " + getSegundaUnidadeDeMedida() + ", " + getPrecoNaPrimeiraUnidadeDeMedida() + ", "
                 + "Fator de Conversão : " + getFatorDeConversao() + ", Tipo de Conversão : " + getTipoDeConversao() + ", "
-                + "Saldo : " + getSaldoDoEstoqueNaPrimeiraUnidadeDeMedida());
+                + "Saldo : " + getSaldoDoEstoqueNaPrimeiraUnidadeDeMedida()  + "\n"); 
     }
 
 }

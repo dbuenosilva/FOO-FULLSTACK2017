@@ -94,7 +94,7 @@ public class Recepcao implements ListadeCodigosDeMensagensDeErros {
     public int leProximoItem(Produto produto, double quantidade, UnidadeDeMedida unidadeDeMedida) {
 
         if (produto.checarEstoque(quantidade, unidadeDeMedida) == SUCESSO
-                && produto.atualizaEstoque(quantidade * (-1), unidadeDeMedida) == SUCESSO) {
+                && produto.atualizaEstoque(quantidade, unidadeDeMedida) == SUCESSO) {
             compraSendoRealiza.getItens().adicionaNaLista(new Item(produto, quantidade, unidadeDeMedida));
         } else {
             return (ERR_SALDO);
