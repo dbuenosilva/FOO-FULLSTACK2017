@@ -2,20 +2,20 @@ package GwMarket;
 
 public class Cliente extends Pessoa {
 
-    private int codigo;
+    private String codigo;
     private String endereco;
 
-    public Cliente(int codigo, String nome, Data nascimento, String cpf, String rg, String endereco) {
+    public Cliente(String codigo, String nome, Data nascimento, String cpf, String rg, String endereco) {
         super(nome, nascimento, cpf, rg);
         this.codigo = codigo;
         this.endereco = endereco;
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return (this.codigo);
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 

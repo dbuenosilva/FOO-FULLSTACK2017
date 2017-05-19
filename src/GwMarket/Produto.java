@@ -2,7 +2,7 @@ package GwMarket;
 
 public class Produto extends ItemDeLista implements ListadeCodigosDeMensagensDeErros {
     
-    private int id;
+    private String id;
     private String descricao;
     private UnidadeDeMedida primeiraUnidadeDeMedida;
     private UnidadeDeMedida segundaUnidadeDeMedida;
@@ -11,19 +11,19 @@ public class Produto extends ItemDeLista implements ListadeCodigosDeMensagensDeE
     private char tipoDeConversao;
     private double saldoDoEstoqueNaPrimeiraUnidadeDeMedida;
 
-    public Produto(int id, String descricao) {
+    public Produto(String id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
 
-    public Produto(int id, String descricao, UnidadeDeMedida primeiraUnidadaDeMedida, double precoNaPrimeiraUnidadeDeMedida) {
+    public Produto(String id, String descricao, UnidadeDeMedida primeiraUnidadaDeMedida, double precoNaPrimeiraUnidadeDeMedida) {
         this.id = id;
         this.descricao = descricao;
         this.primeiraUnidadeDeMedida = primeiraUnidadaDeMedida;
         this.precoNaPrimeiraUnidadeDeMedida = precoNaPrimeiraUnidadeDeMedida;
     }
     
-    public Produto(int id, String descricao, UnidadeDeMedida primeiraUnidadeDeMedida, UnidadeDeMedida segundaUnidadeDeMedida, double precoNaPrimeiraUnidadeDeMedida, double fatorDeConversao, char tipoDeConversao) {
+    public Produto(String id, String descricao, UnidadeDeMedida primeiraUnidadeDeMedida, UnidadeDeMedida segundaUnidadeDeMedida, double precoNaPrimeiraUnidadeDeMedida, double fatorDeConversao, char tipoDeConversao) {
         
         this.id = id;
         this.descricao = descricao;
@@ -34,11 +34,11 @@ public class Produto extends ItemDeLista implements ListadeCodigosDeMensagensDeE
         this.tipoDeConversao = tipoDeConversao;
      }
 
-    public int getId() {
+    public String getId() {
         return (this.id);
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

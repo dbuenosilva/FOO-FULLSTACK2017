@@ -2,7 +2,7 @@ package GwMarket;
 
 public class Cargo extends ItemDeLista {
 
-    private int id;
+    private String id;
     private String descricao;
     private boolean acessoVenda;
     private boolean acessoAoEstoque;
@@ -10,22 +10,22 @@ public class Cargo extends ItemDeLista {
     public Cargo() {
     }
     
-    public Cargo (int id){
+    public Cargo (String id){
         this.id= id;
     }
 
-    public Cargo(int id, String descricao, boolean acessoVenda, boolean acessoAoEstoque) {
+    public Cargo(String id, String descricao, boolean acessoVenda, boolean acessoAoEstoque) {
         this.id = id;
         this.descricao = descricao;
         this.acessoVenda = acessoVenda;
         this.acessoAoEstoque = acessoAoEstoque;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -1,8 +1,8 @@
 package GwMarket;
 
-public class Caixa implements ListadeCodigosDeMensagensDeErros {
+public class Caixa extends ItemDeLista implements ListadeCodigosDeMensagensDeErros {
 
-    private int id;
+    private String id;
     private Balanca balanca;
     private Funcionario operador;
     private Venda vendaSendoRealiza;
@@ -10,32 +10,38 @@ public class Caixa implements ListadeCodigosDeMensagensDeErros {
     public Caixa() {
     }
 
-    public Caixa(int id, Funcionario operador) {
-    	this.id       = id;
+    public Caixa(String id, Balanca balanca) {
+
+        this.id = id;
+        this.balanca = balanca;
+
+    }
+
+    public Caixa(String id, Funcionario operador) {
+        this.id = id;
         this.operador = operador;
     }
 
-    public int getId() {
-    	return(this.id);
+    public String getId() {
+        return (this.id);
     }
-    
-    public void setId(int id) {
-    	this.id = id;
+
+    public void setId(String id) {
+        this.id = id;
     }
-    
-    public Funcionario getOperador(){
-    	return(this.operador);
+
+    public Funcionario getOperador() {
+        return (this.operador);
     }
-    
-    public Balanca getBalanca(){
-    	return(this.balanca);
+
+    public Balanca getBalanca() {
+        return (this.balanca);
     }
-    
-    public Venda getVenda(){
-    	return(this.vendaSendoRealiza);
+
+    public Venda getVenda() {
+        return (this.vendaSendoRealiza);
     }
-    
-    
+
     public int atribuirFuncionario(Funcionario funcionario) {
 
         if (this.operador == null && this.operador.getCargo().getAcessoVenda()) {
@@ -53,8 +59,8 @@ public class Caixa implements ListadeCodigosDeMensagensDeErros {
         } else {
             this.operador = null;
         }
-        
-        return(SUCESSO);
+
+        return (SUCESSO);
     }
 
     public int atribuirBalanca(Balanca balanca) {
@@ -62,10 +68,10 @@ public class Caixa implements ListadeCodigosDeMensagensDeErros {
         if (this.balanca == null) {
             this.balanca = balanca;
         } else {
-            return(ERR_JA_EXISTE_BALANCA);
+            return (ERR_JA_EXISTE_BALANCA);
         }
 
-        return(SUCESSO);
+        return (SUCESSO);
     }
 
     public int removerBalanca() {
@@ -75,17 +81,16 @@ public class Caixa implements ListadeCodigosDeMensagensDeErros {
         } else {
             this.balanca = null;
         }
-        
-        return(SUCESSO);
+
+        return (SUCESSO);
     }
 
     public int iniciarVenda() {
 
         if (this.operador == null) {
-        	return (ERR_NAO_EXISTE_OPERADOR);	
-        }
-        else if (this.vendaSendoRealiza != null) {
-            return(ERR_VENDA_JA_EM_EXECUCAO);
+            return (ERR_NAO_EXISTE_OPERADOR);
+        } else if (this.vendaSendoRealiza != null) {
+            return (ERR_VENDA_JA_EM_EXECUCAO);
         } else {
             vendaSendoRealiza = new Venda();
         }
@@ -95,26 +100,30 @@ public class Caixa implements ListadeCodigosDeMensagensDeErros {
 
     public int leProximoItem(Produto produto, double quantidade, UnidadeDeMedida unidadeDeMedida) {
 
-        if ( produto.checarEstoque(quantidade, unidadeDeMedida) == SUCESSO  
-        		&& produto.atualizaEstoque(quantidade * (-1) ,  unidadeDeMedida) == SUCESSO ) {
+        if (produto.checarEstoque(quantidade, unidadeDeMedida) == SUCESSO
+                && produto.atualizaEstoque(quantidade * (-1), unidadeDeMedida) == SUCESSO) {
             vendaSendoRealiza.getItens().adicionaNaLista(new Item(produto, quantidade, unidadeDeMedida));
         } else {
-            return(ERR_SALDO);
+            return (ERR_SALDO);
         }
 
         return (SUCESSO);
     }
 
     public int finalizarVenda(ListaDeObjetos relacaoDeVendasRealizadas) {
-    	
-    	if(this.vendaSendoRealiza != null) {
-    		relacaoDeVendasRealizadas.adicionaNaLista(this.vendaSendoRealiza);
-    		this.vendaSendoRealiza = null;
-    	}
-    	else {
-    		return(ERR_VENDA_NAO_EXISTE);
-    	}
-    	return(SUCESSO);	
+
+        if (this.vendaSendoRealiza != null) {
+            relacaoDeVendasRealizadas.adicionaNaLista(this.vendaSendoRealiza);
+            this.vendaSendoRealiza = null;
+        } else {
+            return (ERR_VENDA_NAO_EXISTE);
+        }
+        return (SUCESSO);
     }
     
+     @Override
+    public String toString(){
+        return("Codigo do caixa : "+getId()+", Balança : "+getBalanca());
+    }   
+
 }

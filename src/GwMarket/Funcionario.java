@@ -2,20 +2,20 @@ package GwMarket;
 
 public class Funcionario extends Pessoa {
 
-    private int matricula;
+    private String matricula;
     private Cargo cargo;
 
-    public Funcionario(int matricula, String nome, Data nascimento, String cpf, String rg, Cargo cargo) {
+    public Funcionario(String matricula, String nome, Data nascimento, String cpf, String rg, Cargo cargo) {
         super(nome, nascimento, cpf, rg);
         this.matricula = matricula;
         this.cargo = cargo;
     }
 
-    public int getMatricula() {
+    public String getMatricula() {
         return (this.matricula);
     }
 
-    public void setMatricula(int matricula) {
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 

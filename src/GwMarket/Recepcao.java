@@ -2,7 +2,7 @@ package GwMarket;
 
 public class Recepcao implements ListadeCodigosDeMensagensDeErros {
 
-    private int id;
+    private String id;
     private Balanca balanca;
     private Funcionario operador;
     private Compra compraSendoRealiza;
@@ -10,16 +10,16 @@ public class Recepcao implements ListadeCodigosDeMensagensDeErros {
     public Recepcao() {
     }
 
-    public Recepcao(int id, Funcionario operador) {
+    public Recepcao(String id, Funcionario operador) {
         this.id = id;
         this.operador = operador;
     }
 
-    public int getId() {
+    public String getId() {
         return (this.id);
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

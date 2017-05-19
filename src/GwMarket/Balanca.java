@@ -1,25 +1,32 @@
 package GwMarket;
 
-public class Balanca {
+public class Balanca extends ItemDeLista{
 
-    private int id;
+    private String id;
     private String descricao;
     private double peso;
 
     public Balanca() {
     }
+    
+    public Balanca(String id, String descricao) {
+        
+        this.id = id;
+        this.descricao = descricao;
+        
+    }
 
-    public Balanca(int id, String descricao, double peso) {
+    public Balanca(String id, String descricao, double peso) {
         this.id = id;
         this.descricao = descricao;
         this.peso = peso;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -37,6 +44,10 @@ public class Balanca {
 
     public void setPeso(double peso) {
         this.peso = peso;
+    }
+    @Override
+    public String toString(){   
+        return("Codigo : "+getId()+", Descrição : "+ ", Peso : "+getPeso());
     }
 
 }
