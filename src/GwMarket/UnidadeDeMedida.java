@@ -2,7 +2,7 @@ package GwMarket;
 
 public class UnidadeDeMedida extends ItemDeLista{
 
-    private int id;
+    private String id;
     private String descricao;
     private boolean utilizaBalanca;
 
@@ -10,21 +10,21 @@ public class UnidadeDeMedida extends ItemDeLista{
     }
     
        
-    public UnidadeDeMedida(int id){
+    public UnidadeDeMedida(  String id  ){
         this.id=id;
     }
 
-    public UnidadeDeMedida(int id, String descricao, boolean utilizaBalanca) {
+    public UnidadeDeMedida(  String id , String descricao, boolean utilizaBalanca) {
         this.id = id;
         this.descricao = descricao;
         this.utilizaBalanca = utilizaBalanca;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

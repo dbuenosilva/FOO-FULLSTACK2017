@@ -23,7 +23,7 @@ public class Produto extends ItemDeLista implements ListadeCodigosDeMensagensDeE
         this.precoNaPrimeiraUnidadeDeMedida = precoNaPrimeiraUnidadeDeMedida;
     }
     
-    public Produto(int id, String descricao, UnidadeDeMedida primeiraUnidadeDeMedida, UnidadeDeMedida segundaUnidadeDeMedida, double precoNaPrimeiraUnidadeDeMedida, double fatorDeConversao, char tipoDeConversao, double saldoDoEstoqueNaPrimeiraUnidadeDeMedida) {
+    public Produto(int id, String descricao, UnidadeDeMedida primeiraUnidadeDeMedida, UnidadeDeMedida segundaUnidadeDeMedida, double precoNaPrimeiraUnidadeDeMedida, double fatorDeConversao, char tipoDeConversao) {
         
         this.id = id;
         this.descricao = descricao;
@@ -32,8 +32,7 @@ public class Produto extends ItemDeLista implements ListadeCodigosDeMensagensDeE
         this.precoNaPrimeiraUnidadeDeMedida = precoNaPrimeiraUnidadeDeMedida;
         this.fatorDeConversao = fatorDeConversao;
         this.tipoDeConversao = tipoDeConversao;
-        this.saldoDoEstoqueNaPrimeiraUnidadeDeMedida = saldoDoEstoqueNaPrimeiraUnidadeDeMedida;
-    }
+     }
 
     public int getId() {
         return (this.id);

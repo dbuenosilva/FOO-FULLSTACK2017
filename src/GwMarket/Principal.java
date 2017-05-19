@@ -5,7 +5,7 @@ public class Principal {
     public static void main(String[] args) {
    
         Menu menu = new Menu();
-        int opcao;
+        int opcao;	
         int opcao2;      
 
         opcao = menu.menuInicial();
@@ -17,20 +17,26 @@ public class Principal {
                 if (opcao2 == 1) {
                     menu.cadFormaPagto();
                 }
-                else if (opcao2==2){
-                    menu.cadProduto();
+                else if (opcao2==2) {
+                	menu.cadUnidadeDeMedida();
                 }
-                else if (opcao2==3){
-                    menu.cadCliente();
+                else if (opcao2==3) {
+                	menu.cadProduto();
                 }
                 else if (opcao2 == 4) {
                     menu.cadCargo();
                 }
                 else if (opcao2 == 5) {
-                    menu.cadUnidadeDeMedida();
+                	menu.cadFuncionario();
                 }
                 else if (opcao2 == 6) {
-                    menu.cadFuncionario();
+                	menu.cadCliente();
+                }
+                else if (opcao2 == 7) {
+                	menu.cadBalanca();
+                }
+                else if (opcao2 == 8) {
+                	menu.cadCaixa();
                 }
                 else if (opcao2 == 0) {
                     opcao = menu.menuInicial();
@@ -42,19 +48,25 @@ public class Principal {
                     menu.relFormaPagto();
                 }
                 else if (opcao2==2){
-                    menu.relProduto();
+                	menu.relUnidadeDeMedida();
                 }
                 else if (opcao2==3){
-                    menu.relCliente();
+                	menu.relProduto();
                 }    
                 else if (opcao2 == 4) {
                     menu.relCargo();
                 }
                  else if (opcao2 == 5) {
-                    menu.relUnidadeDeMedida();
+                	 menu.relFuncionario();         
                 }
                   else if (opcao2 == 6) {
-                    menu.relFuncionario();
+                	  menu.relCliente();
+                }
+                else if (opcao2 == 7) {
+                      menu.relBalanca();
+                }
+                else if (opcao2 == 8) {
+                      menu.relCaixa();                      
                 }
                 else if (opcao2 == 0) {
                     opcao = menu.menuInicial();

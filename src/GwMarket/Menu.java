@@ -28,8 +28,8 @@ public class Menu {
                 + "\n"
                 + "1 - Cadastros \n"
                 + "2 - Relatórios \n"
-                + "3 - Venda \n"
-        		+ "4 - Compra \n"
+                + "3 - Efetuar Venda \n"
+        		+ "4 - Efetuar Compra \n"
         		+ "\n"
         		+ "0 - Sair "
         		);
@@ -39,12 +39,14 @@ public class Menu {
 
     public int subMenu() {
         String opcaoDeMenuEmCaracter = JOptionPane.showInputDialog(null, " \n"
-                + "1 - Forma de Pagamento \n"
-                + "2 - Produtos \n"
-                + "3 - Clientes \n"
+        		+ "1 - Forma de Pagamento \n"
+                + "2 - Unidade de Medida \n"
+                + "3 - Produtos \n"
                 + "4 - Cargo \n"
-                + "5 - Unidade de Medida \n"
-                + "6 - Funcionario \n"
+                + "5 - Funcionario \n"
+                + "6 - Clientes \n"
+                + "7 - Balanças \n"                
+                + "8 - Caixas \n"
                 + "\n"
                 + "Digite 0 para Voltar ao menu inicial"
         		);
@@ -55,10 +57,9 @@ public class Menu {
 
     public void cadFormaPagto() {
         String codigoEmCaracter = JOptionPane.showInputDialog("Digite o codigo da Forma de pagamento.");
-        int codigoEmNumeros = Integer.parseInt(codigoEmCaracter);
         String descricao = JOptionPane.showInputDialog("Digite a descrição da forma de Pagamento");
         int logico = JOptionPane.showConfirmDialog(null, "Forma de Pagamento Permite Troco ?");
-        cadastroDeFormaDePagamento.adicionaNaLista(new FormaDePagamento(codigoEmNumeros, descricao, logico != 1));
+        cadastroDeFormaDePagamento.adicionaNaLista(new FormaDePagamento(codigoEmCaracter, descricao, logico != 1));
     }
 
     public void cadProduto() {
@@ -79,35 +80,32 @@ public class Menu {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 options, options[0]);
         UnidadeDeMedida primeiraUnidadeDeMedida = (UnidadeDeMedida) combo.getSelectedItem();
-        //
         
         // Monta combo para escolha da Segunda Unidade De Medida
         JOptionPane.showOptionDialog(null, combo, "Escolha a Segunda Unidade de Medida do produto :",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 options, options[0]);
         UnidadeDeMedida segundaUnidadeDeMedida = (UnidadeDeMedida) combo.getSelectedItem();
-        //
-        
-        stringConstante = JOptionPane.showInputDialog("Digite o Preço na primeira unidade de Medida : ");
-        double precoNaPrimeiraUnidadeDeMedida = Double.parseDouble(stringConstante);
-        stringConstante = JOptionPane.showInputDialog("Digite o Fator de Conversão do produto : ");
-        double fatorDeConversao = Double.parseDouble(stringConstante);
         
         // Monta combo para escolha da Unidade De Medida
         final JComboBox<String> comboFator = new JComboBox<String>( );
         comboFator.addItem("Multiplicação");
         comboFator.addItem("Divisão");
-        JOptionPane.showOptionDialog(null, comboFator, "Tipo de Conversão :",
+        JOptionPane.showOptionDialog(null, comboFator, "Tipo de Conversão para Segunda Unidade de Medida :",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 options, options[0]);
         Character tipoDeConversao = comboFator.getSelectedItem().toString().charAt(0);
+        
+        stringConstante = JOptionPane.showInputDialog("Digite o Fator de Conversão do produto : ");
+        double fatorDeConversao = Double.parseDouble(stringConstante);
+        
         //
         
-        stringConstante = JOptionPane.showInputDialog("Digite o Saldo do estoque do produto : ");
-        double saldoDoEstoqueNaPrimeiraUnidadeDeMedida = Double.parseDouble(stringConstante);
-
+        stringConstante = JOptionPane.showInputDialog("Digite o Preço na primeira unidade de Medida : ");
+        double precoNaPrimeiraUnidadeDeMedida = Double.parseDouble(stringConstante);
+        
         cadastroDeProdutos.adicionaNaLista(new Produto(codigoEmNumeros, descricao, primeiraUnidadeDeMedida,segundaUnidadeDeMedida, 
-        		precoNaPrimeiraUnidadeDeMedida, fatorDeConversao, tipoDeConversao, saldoDoEstoqueNaPrimeiraUnidadeDeMedida));                                                                   
+        		precoNaPrimeiraUnidadeDeMedida, fatorDeConversao, tipoDeConversao ));                                                                   
     }
 
     public void cadCargo() {
@@ -120,6 +118,14 @@ public class Menu {
         cadastroDeCargos.adicionaNaLista(new Cargo(codigoEmNumeros, descricao, logico != 1, logico2 != 1));
     }
 
+    public void cadBalanca() {
+
+    }
+    
+    public void cadCaixa() {
+
+    }
+    
     public void cadCliente() {
 
         String codigoEmCaracter = JOptionPane.showInputDialog("Digite o codigo do Cliente.");
@@ -156,10 +162,10 @@ public class Menu {
     
     public void cadUnidadeDeMedida(){
         String codigoEmCaracter = JOptionPane.showInputDialog("Digite o codigo da Unidade de Medida : ");
-        int codigoEmNumeros = Integer.parseInt(codigoEmCaracter);
+        //String codigoEmNumeros = codigoEmCaracter;
         String descricao = JOptionPane.showInputDialog("Digite a descrição da Unidade de Medida : ");
         int logico = JOptionPane.showConfirmDialog(null, "Utiliza Balança ? ");
-        cadastroDeUnidadeDeMedidas.adicionaNaLista(new UnidadeDeMedida(codigoEmNumeros, descricao, logico != 1));
+        cadastroDeUnidadeDeMedidas.adicionaNaLista(new UnidadeDeMedida(codigoEmCaracter, descricao, logico != 1));
     }
     public void relUnidadeDeMedida() {
 
@@ -171,7 +177,6 @@ public class Menu {
         }
         JOptionPane.showMessageDialog(null, this.impressao);
         this.impressao = "";
-        String Logico = "";
     }
     
     
@@ -241,6 +246,13 @@ public class Menu {
         
     }
     
+    public void relBalanca() {
+    	
+    }
+    
+    public void relCaixa() {
+    	
+    }
     
     
 

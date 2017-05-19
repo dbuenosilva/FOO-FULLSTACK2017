@@ -2,13 +2,13 @@ package GwMarket;
 
 public class FormaDePagamento extends ItemDeLista {
 
-    private int id;
+    private String id;
     private String descricao;
     private boolean permiteTroco;
     
     public FormaDePagamento(){}
     
-    public FormaDePagamento(int id, String descricao, boolean permiteTroco){
+    public FormaDePagamento(String id, String descricao, boolean permiteTroco){
         
         this.id = id;
         this.descricao=descricao;
@@ -16,11 +16,11 @@ public class FormaDePagamento extends ItemDeLista {
         
     }
 
-    public int getId() {
+    public String getId() {
         return(this.id);
     }
 
-    public void setId(int id) {
+    public void setId( String id) {
         this.id = id;
     }
 
