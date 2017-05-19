@@ -1,6 +1,7 @@
 package GwMarket;
 
 import java.util.Iterator;
+
 import javax.swing.JOptionPane;
 
 public class Menu {
@@ -23,9 +24,14 @@ public class Menu {
     public int menuInicial() {
         String opcaoDeMenuEmCaracter = JOptionPane.showInputDialog(null, "Seja Bem Vindo ! \n"
                 + "Menu de opções: \n"
-                + "0 - Sair\n"
+                + "\n"
                 + "1 - Cadastros \n"
-                + "2 - Relatórios \n");
+                + "2 - Relatórios \n"
+                + "3 - Venda \n"
+        		+ "4 - Compra \n"
+        		+ "\n"
+        		+ "0 - Sair "
+        		);
         int opcaoDeMenuEmNumeros = Integer.parseInt(opcaoDeMenuEmCaracter);
         return (opcaoDeMenuEmNumeros);
     }
@@ -64,12 +70,13 @@ public class Menu {
         double precoNaPrimeiraUnidadeDeMedida = Double.parseDouble(stringConstante);
         stringConstante = JOptionPane.showInputDialog("Digite o Fator de Conversão do produto : ");
         double fatorDeConversao = Double.parseDouble(stringConstante);
-        String tipoDeConversao = JOptionPane.showInputDialog("Digite o Tipo de Conversão : : ");
+        stringConstante = JOptionPane.showInputDialog("Digite o Tipo de Conversão : : ");
+        char tipoDeConversao = stringConstante.charAt(0);
         stringConstante = JOptionPane.showInputDialog("Digite o Saldo do estoque do produto : ");
         double saldoDoEstoqueNaPrimeiraUnidadeDeMedida = Double.parseDouble(stringConstante);
 
-        //Falta so isso.
-        //cadastroDeProdutos.adicionaNaLista(new Produto(codigoEmNumeros, descricao, new UnidadeDeMedida(primeiraUnidadeDeMedida), 2, precoNaPrimeiraUnidadeDeMedida, fatorDeConversao, 0, saldoDoEstoqueNaPrimeiraUnidadeDeMedida));
+        cadastroDeProdutos.adicionaNaLista(new Produto(codigoEmNumeros, descricao, new UnidadeDeMedida(primeiraUnidadeDeMedida), 
+        		new UnidadeDeMedida(segundaUnidadeDeMedida), precoNaPrimeiraUnidadeDeMedida, fatorDeConversao, tipoDeConversao, saldoDoEstoqueNaPrimeiraUnidadeDeMedida));                                                                   
     }
 
     public void cadCargo() {
