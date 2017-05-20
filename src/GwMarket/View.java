@@ -5,7 +5,7 @@ import java.util.Iterator;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-public class View implements  ListadeCodigosDeMensagensDeErros {
+public class View implements ListadeCodigosDeMensagensDeErros {
 
     // Simula as tabelas no Banco de Dados .
     private Model cadastroDeClientes = new Model();
@@ -16,31 +16,31 @@ public class View implements  ListadeCodigosDeMensagensDeErros {
     private Model cadastroDeFormaDePagamento = new Model();
     private Model cadastroDeProdutos = new Model();
     private Model cadastroDeUnidadeDeMedidas = new Model();
-    private Model cadastroDeVendasRealizadas = new Model();
-    private Model cadastroDeComprasRealizadas = new Model();
+    private Model relacaoDeVendasRealizadas = new Model();
+    private Model relacaoDeComprasRealizadas = new Model();
 
     private String impressao;
     private boolean resultPermiteTroco = false;
-    
+
     private String opcao;
     private String opcao2;
-    
-    public String getOpcao(){
-    	return(this.opcao);
+
+    public String getOpcao() {
+        return (this.opcao);
     }
 
     public String getOpcao2() {
-    	return(this.opcao2);
-    }
-    
-    public void setOpcao(String opc){
-    	this.opcao = opc;
+        return (this.opcao2);
     }
 
-    public void setOpcao2( String opc2 ) {
-    	this.opcao2 = opc2;
+    public void setOpcao(String opc) {
+        this.opcao = opc;
     }
-    
+
+    public void setOpcao2(String opc2) {
+        this.opcao2 = opc2;
+    }
+
     public String viewInicial() {
         String opcaoDeviewEmCaracter = JOptionPane.showInputDialog(null, "Seja Bem Vindo ! \n"
                 + "\n"
@@ -50,8 +50,8 @@ public class View implements  ListadeCodigosDeMensagensDeErros {
                 + "3 - Efetuar Venda \n"
                 + "4 - Efetuar Compra \n"
                 + "\n"
-                + "0 - Sair "
-         ,"INICIO" , JOptionPane.PLAIN_MESSAGE);
+                + "0 - Sair ",
+                "INICIO", JOptionPane.PLAIN_MESSAGE);
 
         return (opcaoDeviewEmCaracter);
     }
@@ -66,16 +66,15 @@ public class View implements  ListadeCodigosDeMensagensDeErros {
                 + "6 - Clientes \n"
                 + "7 - Balanças \n"
                 + "8 - Caixas \n"
+                + (this.opcao.equals("1") ? "" : "9 - Compras \n")
+                + (this.opcao.equals("1") ? "" : "10 - Vendas \n")
                 + "\n"
-                + "Digite 0 para Voltar ao menu inicial"
-          ,  ( this.opcao.equals("1")  ) ?  "CADASTROS" : ( this.opcao.equals("2") ? "RELATORIOS" : ( this.opcao.equals("3") ? "VENDA" : "COMPRA" ) )  , JOptionPane.PLAIN_MESSAGE);
+                + "Digite 0 para Voltar ao menu inicial",
+                (this.opcao.equals("1")) ? "CADASTROS" : (this.opcao.equals("2") ? "RELATORIOS" : (this.opcao.equals("3") ? "VENDA" : "COMPRA")), JOptionPane.PLAIN_MESSAGE);
 
         return (opcaoDeviewEmCaracter);
     }
 
-    
-    
-    
     /*
      * 
      * Cadastros
@@ -98,7 +97,7 @@ public class View implements  ListadeCodigosDeMensagensDeErros {
 
     public void cadCaixa() {
         String codigoEmCaracter = JOptionPane.showInputDialog("Digite o codigo do caixa : ");
-        String nomeDoCaixa      = JOptionPane.showInputDialog("Digite a descrição do caixa : ");
+        String nomeDoCaixa = JOptionPane.showInputDialog("Digite a descrição do caixa : ");
 
         Funcionario operador;
         final JComboBox<Funcionario> comboOperador = new JComboBox<Funcionario>();
@@ -112,8 +111,7 @@ public class View implements  ListadeCodigosDeMensagensDeErros {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 options, options[0]);
         operador = (Funcionario) comboOperador.getSelectedItem();
-        
-        
+
         // Escolha da Balanca
         final JComboBox<Balanca> combo = new JComboBox<Balanca>();
         i = cadastroDeBalancas.getLista().iterator();
@@ -221,7 +219,7 @@ public class View implements  ListadeCodigosDeMensagensDeErros {
         JOptionPane.showOptionDialog(null, combo, "Informe o cargo do Funcionario :",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 options, options[0]);
-        
+
         Cargo cargo = (Cargo) combo.getSelectedItem();
 
         cadastroDeFuncionarios.adicionaNaLista(new Funcionario(codigo, nome, new Data(vetor[0], vetor[1], vetor[2]), cpf, rg, cargo));
@@ -235,125 +233,114 @@ public class View implements  ListadeCodigosDeMensagensDeErros {
         cadastroDeUnidadeDeMedidas.adicionaNaLista(new UnidadeDeMedida(codigoEmCaracter, descricao, logico != 1));
     }
 
-    
-    
-    
     /*
      * 
      * Relatorios
      * 
      * 
      */
-       
     public void relUnidadeDeMedida() {
-    	this.impressao = "";
+        this.impressao = "";
         Iterator i = cadastroDeUnidadeDeMedidas.getLista().iterator();
         while (i.hasNext()) {
             UnidadeDeMedida u = (UnidadeDeMedida) i.next();
             this.impressao += u;
         }
-        JOptionPane.showMessageDialog(null, this.impressao,  "Relatório de Unidade de Medida" , JOptionPane.PLAIN_MESSAGE  );
+        JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Unidade de Medida", JOptionPane.PLAIN_MESSAGE);
 
-        
     }
 
     public void relCliente() {
-    	this.impressao = "";
+        this.impressao = "";
         Iterator i = cadastroDeClientes.getLista().iterator();
         while (i.hasNext()) {
             Cliente c = (Cliente) i.next();
             this.impressao += c;
         }
-        JOptionPane.showMessageDialog(null, this.impressao,  "Relatório de Formas de Clientes" , JOptionPane.PLAIN_MESSAGE  );
-       
+        JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Formas de Clientes", JOptionPane.PLAIN_MESSAGE);
+
     }
 
     public void relFuncionario() {
-    	this.impressao = "";
+        this.impressao = "";
         Iterator i = cadastroDeFuncionarios.getLista().iterator();
         while (i.hasNext()) {
             Funcionario fun = (Funcionario) i.next();
             this.impressao += fun;
         }
-        JOptionPane.showMessageDialog(null, this.impressao,  "Relatório de Funcionários" , JOptionPane.PLAIN_MESSAGE  );
+        JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Funcionários", JOptionPane.PLAIN_MESSAGE);
 
     }
 
     public void relCargo() {
-    	this.impressao = "";
+        this.impressao = "";
         Iterator i = cadastroDeCargos.getLista().iterator();
         while (i.hasNext()) {
             Cargo cg = (Cargo) i.next();
             this.impressao += cg;
         }
-        JOptionPane.showMessageDialog(null, this.impressao,  "Relatório de Cargos" , JOptionPane.PLAIN_MESSAGE  );
+        JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Cargos", JOptionPane.PLAIN_MESSAGE);
 
     }
 
     public void relFormaPagto() {
-    	this.impressao = "";
+        this.impressao = "";
         Iterator i = cadastroDeFormaDePagamento.getLista().iterator();
 
         while (i.hasNext()) {
             FormaDePagamento f = (FormaDePagamento) i.next();
             this.impressao += f;
         }
-        JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Formas de Pagamento" , JOptionPane.PLAIN_MESSAGE );
-        
+        JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Formas de Pagamento", JOptionPane.PLAIN_MESSAGE);
+
     }
 
     public void relProduto() {
-    	this.impressao = "";
+        this.impressao = "";
         Iterator i = cadastroDeProdutos.getLista().iterator();
 
         while (i.hasNext()) {
             Produto p = (Produto) i.next();
             this.impressao += p;
         }
-        JOptionPane.showMessageDialog(null, this.impressao,  "Relatório de Produtos" , JOptionPane.PLAIN_MESSAGE  );
-
+        JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Produtos", JOptionPane.PLAIN_MESSAGE);
 
     }
 
     public void relBalanca() {
-    	this.impressao = "";
+        this.impressao = "";
         Iterator i = cadastroDeBalancas.getLista().iterator();
 
         while (i.hasNext()) {
             Balanca b = (Balanca) i.next();
             this.impressao += b;
         }
-        JOptionPane.showMessageDialog(null, this.impressao,  "Relatório de Balanças" , JOptionPane.PLAIN_MESSAGE  );
+        JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Balanças", JOptionPane.PLAIN_MESSAGE);
 
     }
 
     public void relCaixa() {
-    	this.impressao = "";
+        this.impressao = "";
         Iterator i = cadastroDeCaixas.getLista().iterator();
 
         while (i.hasNext()) {
             Caixa cx = (Caixa) i.next();
             this.impressao += cx;
         }
-        JOptionPane.showMessageDialog(null, this.impressao,  "Relatório de Caixas" , JOptionPane.PLAIN_MESSAGE  );
+        JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Caixas", JOptionPane.PLAIN_MESSAGE);
 
     }
-    
-    
-    
-    
+
     /*
      * 
      * Venda
      * 
      * 
      */
-    
-    public void venda( ) {
-    	
-    	 
-    	 Caixa caixa;
-    	
+    public void venda() {
+
+        Caixa caixa;
+
         // Monta combo para escolha do caixa
         final JComboBox<Caixa> combo = new JComboBox<Caixa>();
         Iterator i = cadastroDeCaixas.getLista().iterator();
@@ -362,92 +349,202 @@ public class View implements  ListadeCodigosDeMensagensDeErros {
             combo.addItem(caixa);
         }
         String[] options = {"OK", "Cancel"};
-        
-        while(true) {
-        
-        	JOptionPane.showOptionDialog(null, combo, "Efetura venda pelo caixa :",
+
+        while (true) {
+
+            JOptionPane.showOptionDialog(null, combo, "Efetura venda pelo caixa :",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                    options, options[0]);
+
+            caixa = (Caixa) combo.getSelectedItem();
+
+            if (caixa.getOperador().getCargo().getAcessoVenda()) {
+                break;
+            } else {
+                JOptionPane.showMessageDialog(null, "Operador " + caixa.getOperador().getNome() + " do caixa " + caixa.getDescricao() + " não tem acesso a vendas!", "Permissão de Venda", JOptionPane.PLAIN_MESSAGE);
+                this.setOpcao(this.viewInicial());
+            }
+
+        }
+
+        int result = caixa.iniciarVenda();
+
+        if (result == SUCESSO) {
+
+            boolean continua = true;
+
+            while (continua) {
+
+                // Monta combo para escolha do produto
+                Produto produto;
+                final JComboBox<Produto> comboProduto = new JComboBox<Produto>();
+                i = cadastroDeProdutos.getLista().iterator();
+                while (i.hasNext()) {
+                    produto = (Produto) i.next();
+                    comboProduto.addItem(produto);
+                }
+                // String[] options = {"OK", "Cancel"};
+
+                JOptionPane.showOptionDialog(null, comboProduto, "Produto :",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                        options, options[0]);
+
+                produto = (Produto) comboProduto.getSelectedItem();
+
+                // Monta escolha de Unidade de Medida
+                UnidadeDeMedida um;
+                final JComboBox<UnidadeDeMedida> comboUM = new JComboBox<UnidadeDeMedida>();
+                i = cadastroDeUnidadeDeMedidas.getLista().iterator();
+                while (i.hasNext()) {
+                    um = (UnidadeDeMedida) i.next();
+                    comboUM.addItem(um);
+                }
+                // String[] options = {"OK", "Cancel"};
+
+                JOptionPane.showOptionDialog(null, comboUM, "Unidade De Medida :",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                        options, options[0]);
+
+                um = (UnidadeDeMedida) comboUM.getSelectedItem();
+
+                if (um.equals(produto.getPrimeiraUnidadeDeMedida()) || um.equals(produto.getSegundaUnidadeDeMedida())) {
+
+                    String stringConstante = JOptionPane.showInputDialog("Informe a Quantidade em " + um.getDescricao());
+                    double quantidade = Double.parseDouble(stringConstante);
+
+                    if (caixa.addItemNaVenda(produto, quantidade, um) != SUCESSO) {
+                        JOptionPane.showMessageDialog(null, codigos[result].getDescricao(), "Adicionar novo Item na Venda", JOptionPane.PLAIN_MESSAGE);
+                    }
+
+                    if (JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Deseja adicionar mais produtos?", "Adicionar mais produtos", JOptionPane.YES_NO_OPTION)) {
+                        continua = false;
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Produto  " + produto.getDescricao() + " não configurado para Unidade de Medida " + um.getDescricao() + "!", "Permissão de Venda", JOptionPane.PLAIN_MESSAGE);
+                    if (JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Deseja adicionar mais produtos?", "Adicionar mais produtos", JOptionPane.YES_NO_OPTION)) {
+                        continua = false;
+                    }
+                }
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, codigos[result].getDescricao(), "Iniciar Venda", JOptionPane.PLAIN_MESSAGE);
+        }
+    }
+
+    public void compra() {
+
+        Recepcao recepcao = new Recepcao();
+
+        Funcionario operador;
+
+        final JComboBox<Funcionario> comboOperador = new JComboBox<Funcionario>();
+        Iterator i = cadastroDeFuncionarios.getLista().iterator();
+        while (i.hasNext()) {
+            operador = (Funcionario) i.next();
+            comboOperador.addItem(operador);
+        }
+        String[] options = {"OK", "Cancel"};
+        JOptionPane.showOptionDialog(null, comboOperador, "Informe o Operador do Caixa :",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 options, options[0]);
+        recepcao.setFuncionario((Funcionario) comboOperador.getSelectedItem());
 
-        	caixa = (Caixa) combo.getSelectedItem();
+        int result = recepcao.iniciarCompra();
 
-        	if (caixa.getOperador().getCargo().getAcessoVenda()) {
-        		break;
-        	}
-        	else {
-                JOptionPane.showMessageDialog(null, "Operador " + caixa.getOperador().getNome() + " do caixa " + caixa.getDescricao() + " não tem acesso a vendas!", "Permissão de Venda" , JOptionPane.PLAIN_MESSAGE  );
-                this.setOpcao(this.viewInicial());
-        	}
-           
-        } 
-        
-        int result = caixa.iniciarVenda();
-        
-        if (result == SUCESSO ) {
-        
-        	boolean continua = true;
-        	
-        	while( continua ) {
-        		
-        		
-               // Monta combo para escolha do produto
-               Produto produto;
-               final JComboBox<Produto> comboProduto = new JComboBox<Produto>();
-               i = cadastroDeProdutos.getLista().iterator();
-               while (i.hasNext()) {
-                   produto = (Produto) i.next();
-                   comboProduto.addItem(produto);
-               }
-               // String[] options = {"OK", "Cancel"};
-                            
-              JOptionPane.showOptionDialog(null, comboProduto, "Produto :",
-                       JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                       options, options[0]);
+        if (result == SUCESSO) {
 
-              produto = (Produto) comboProduto.getSelectedItem();
-                            
-              // Monta escolha de Unidade de Medida
-              UnidadeDeMedida um;
-              final JComboBox<UnidadeDeMedida> comboUM = new JComboBox<UnidadeDeMedida>();
-              i = cadastroDeUnidadeDeMedidas.getLista().iterator();
-              while (i.hasNext()) {
-                  um = (UnidadeDeMedida) i.next();
-                  comboUM.addItem(um);
-              }
-              // String[] options = {"OK", "Cancel"};
-                
-             JOptionPane.showOptionDialog(null, comboUM, "Unidade De Medida :",
-                      JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                      options, options[0]);
+            boolean continua = true;
 
-             um = (UnidadeDeMedida) comboUM.getSelectedItem();
+//            String[] options = {"OK", "Cancel"};
+            while (continua) {
 
-             if (  um.equals(produto.getPrimeiraUnidadeDeMedida()) || um.equals(produto.getSegundaUnidadeDeMedida() ) ) {
-            
-                 String stringConstante = JOptionPane.showInputDialog("Informe a Quantidade em " + um.getDescricao() );
-                 double quantidade = Double.parseDouble(stringConstante);               
-            	 
-                 if ( caixa.addItemNaVenda(produto, quantidade, um) != SUCESSO )  {
-                     JOptionPane.showMessageDialog(null, codigos[result].getDescricao() , "Adicionar novo Item na Venda" , JOptionPane.PLAIN_MESSAGE  );                    
-                 }
-                 
-                 if ( JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Deseja adicionar mais produtos?", "Adicionar mais produtos", JOptionPane.YES_NO_OPTION ) ) {
-                	 continua = false;
-                 }
-                 	                             	 
-             }                   
-         	else {
-                JOptionPane.showMessageDialog(null, "Produto  " + produto.getDescricao() + " não configurado para Unidade de Medida " + um.getDescricao() + "!", "Permissão de Venda" , JOptionPane.PLAIN_MESSAGE  );
-                if ( JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Deseja adicionar mais produtos?", "Adicionar mais produtos", JOptionPane.YES_NO_OPTION ) ) {
-               	 continua = false;
+                // Monta combo para escolha do produto
+                Produto produto;
+                final JComboBox<Produto> comboProduto = new JComboBox<Produto>();
+                i = cadastroDeProdutos.getLista().iterator();
+                while (i.hasNext()) {
+                    produto = (Produto) i.next();
+                    comboProduto.addItem(produto);
                 }
-        	}
-              
-         }
-        	
+                // String[] options = {"OK", "Cancel"};
+
+                JOptionPane.showOptionDialog(null, comboProduto, "Produto :",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                        options, options[0]);
+
+                produto = (Produto) comboProduto.getSelectedItem();
+
+                // Monta escolha de Unidade de Medida
+                UnidadeDeMedida um;
+                final JComboBox<UnidadeDeMedida> comboUM = new JComboBox<UnidadeDeMedida>();
+                i = cadastroDeUnidadeDeMedidas.getLista().iterator();
+                while (i.hasNext()) {
+                    um = (UnidadeDeMedida) i.next();
+                    comboUM.addItem(um);
+                }
+                // String[] options = {"OK", "Cancel"};
+
+                JOptionPane.showOptionDialog(null, comboUM, "Unidade De Medida :",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                        options, options[0]);
+
+                um = (UnidadeDeMedida) comboUM.getSelectedItem();
+
+                if (um.equals(produto.getPrimeiraUnidadeDeMedida()) || um.equals(produto.getSegundaUnidadeDeMedida())) {
+
+                    String stringConstante = JOptionPane.showInputDialog("Informe a Quantidade em " + um.getDescricao());
+                    double quantidade = Double.parseDouble(stringConstante);
+
+                    if (recepcao.addItemNaCompra(produto, quantidade, um) != SUCESSO) {
+                        JOptionPane.showMessageDialog(null, codigos[result].getDescricao(), "Adicionar novo Item na compra", JOptionPane.PLAIN_MESSAGE);
+                    }
+
+                    if (JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Deseja adicionar mais produtos?", "Adicionar mais produtos", JOptionPane.YES_NO_OPTION)) {
+                        continua = false;
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Produto  " + produto.getDescricao() + " não configurado para Unidade de Medida " + um.getDescricao() + "!", "Permissão de compras", JOptionPane.PLAIN_MESSAGE);
+                    if (JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Deseja adicionar mais produtos?", "Adicionar mais produtos", JOptionPane.YES_NO_OPTION)) {
+                        continua = false;
+                    }
+                }
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, codigos[result].getDescricao(), "Iniciar compra", JOptionPane.PLAIN_MESSAGE);
         }
-        else {
-            JOptionPane.showMessageDialog(null, codigos[result].getDescricao() , "Iniciar Venda" , JOptionPane.PLAIN_MESSAGE  );           
-        }     
-    }        
+    }
+
+    public void relCompra() {
+
+        this.impressao = "";
+        Iterator i = relacaoDeComprasRealizadas.getLista().iterator();
+
+        while (i.hasNext()) {
+            ItemDaCompra ic = (ItemDaCompra) i.next();
+            this.impressao += ic;
+        }
+
+        JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Compras", JOptionPane.PLAIN_MESSAGE);
+
+    }
+
+    public void relVenda() {
+
+        this.impressao = "";
+        Iterator i = relacaoDeVendasRealizadas.getLista().iterator();
+
+        while (i.hasNext()) {
+            ItemDaVenda iv = (ItemDaVenda) i.next();
+            this.impressao += iv;
+        }
+        JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Vendas", JOptionPane.PLAIN_MESSAGE);
+
+    }
+
 }

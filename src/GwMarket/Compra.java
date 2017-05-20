@@ -5,12 +5,14 @@ public class Compra extends ItemModel {
     private Data data;
     private Model itens;
 
-    public Compra(Data data, Model itens) {
+    public Compra(Data data) {
 
         this.data = data;
-        this.itens = itens;
+        this.itens = new Model();
     }
-    public Compra(){}
+    public Compra(){
+       this.itens = new Model();
+    }
 
     public Data getData() {
         return data;
@@ -23,5 +25,5 @@ public class Compra extends ItemModel {
     public Model getItens() {
         return (this.itens);
     }
-
+ 
 }

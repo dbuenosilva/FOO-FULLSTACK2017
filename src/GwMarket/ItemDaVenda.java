@@ -15,7 +15,7 @@ public class ItemDaVenda extends ItemModel {
         this.produto = produto;
         this.quantidade = quantidade;
         this.unidadeDeMedida = unidadeDeMedida;
-        this.valorUnitario = buscaPrecoProduto(unidadeDeMedida);;
+        this.valorUnitario = buscaPrecoProduto(unidadeDeMedida);
 
     }
 

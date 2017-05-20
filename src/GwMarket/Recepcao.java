@@ -26,6 +26,10 @@ public class Recepcao implements ListadeCodigosDeMensagensDeErros {
     public Funcionario getOperador() {
         return (this.operador);
     }
+    
+    public void setFuncionario(Funcionario operador){
+        this.operador=operador;
+    }
 
     public Balanca getBalanca() {
         return (this.balanca);
@@ -95,6 +99,17 @@ public class Recepcao implements ListadeCodigosDeMensagensDeErros {
 
         if (produto.checarEstoque(quantidade, unidadeDeMedida) == SUCESSO
                 && produto.atualizaEstoque(quantidade, unidadeDeMedida) == SUCESSO) {
+            compraSendoRealiza.getItens().adicionaNaLista(new ItemDaVenda(produto, quantidade, unidadeDeMedida));
+        } else {
+            return (ERR_SALDO);
+        }
+
+        return (SUCESSO);
+    }
+     public int addItemNaCompra(Produto produto, double quantidade, UnidadeDeMedida unidadeDeMedida) {
+
+        if (produto.checarEstoque(quantidade, unidadeDeMedida) == SUCESSO
+                && produto.atualizaEstoque(quantidade * 1, unidadeDeMedida) == SUCESSO) {
             compraSendoRealiza.getItens().adicionaNaLista(new ItemDaVenda(produto, quantidade, unidadeDeMedida));
         } else {
             return (ERR_SALDO);

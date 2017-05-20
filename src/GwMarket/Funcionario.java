@@ -10,7 +10,8 @@ public class Funcionario extends Pessoa {
         this.matricula = matricula;
         this.cargo = cargo;
     }
-
+   
+  
     public String getMatricula() {
         return (this.matricula);
     }
