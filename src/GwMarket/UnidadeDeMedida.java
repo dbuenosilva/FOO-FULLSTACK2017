@@ -1,6 +1,6 @@
 package GwMarket;
 
-public class UnidadeDeMedida extends ItemDeLista{
+public class UnidadeDeMedida extends ItemModel{
 
     private String id;
     private String descricao;

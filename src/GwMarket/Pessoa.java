@@ -1,7 +1,7 @@
 
 package GwMarket;
 
-public class Pessoa extends ItemDeLista {
+public class Pessoa extends ItemModel {
 
 	private String nome;
 	private Data nascimento;

@@ -4,21 +4,21 @@ package GwMarket;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class ListaDeObjetos {
+public class Model {
 
 	private int qtdAtual;
-	private LinkedList<ItemDeLista> listaDeObjetos;
+	private LinkedList<ItemModel> listaDeObjetos;
 	
-	public ListaDeObjetos() {
-		this.listaDeObjetos = new LinkedList<ItemDeLista>();
+	public Model() {
+		this.listaDeObjetos = new LinkedList<ItemModel>();
 		this.qtdAtual = 0;
 	}
 
-	public void adicionaNaLista( ItemDeLista obj ) {
+	public void adicionaNaLista( ItemModel obj ) {
 		listaDeObjetos.add(obj);
 	}
 	
-	public void removeDaLista( ItemDeLista obj ) {
+	public void removeDaLista( ItemModel obj ) {
 		listaDeObjetos.remove(obj);
 	}
 	
@@ -26,7 +26,7 @@ public class ListaDeObjetos {
 		return(this.qtdAtual);
 	}
 
-	public LinkedList<ItemDeLista> getLista() {
+	public LinkedList<ItemModel> getLista() {
 		return(this.listaDeObjetos);
 	}
 	

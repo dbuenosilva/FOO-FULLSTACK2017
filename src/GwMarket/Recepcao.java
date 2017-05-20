@@ -95,7 +95,7 @@ public class Recepcao implements ListadeCodigosDeMensagensDeErros {
 
         if (produto.checarEstoque(quantidade, unidadeDeMedida) == SUCESSO
                 && produto.atualizaEstoque(quantidade, unidadeDeMedida) == SUCESSO) {
-            compraSendoRealiza.getItens().adicionaNaLista(new Item(produto, quantidade, unidadeDeMedida));
+            compraSendoRealiza.getItens().adicionaNaLista(new ItemDaVenda(produto, quantidade, unidadeDeMedida));
         } else {
             return (ERR_SALDO);
         }
@@ -103,7 +103,7 @@ public class Recepcao implements ListadeCodigosDeMensagensDeErros {
         return (SUCESSO);
     }
 
-    public int finalizarCompra(ListaDeObjetos relacaoDeComprasRealizadas) {
+    public int finalizarCompra(Model relacaoDeComprasRealizadas) {
 
         if (this.compraSendoRealiza != null) {
             relacaoDeComprasRealizadas.adicionaNaLista(this.compraSendoRealiza);

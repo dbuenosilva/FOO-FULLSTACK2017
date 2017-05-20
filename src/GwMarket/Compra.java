@@ -1,11 +1,11 @@
 package GwMarket;
 
-public class Compra extends ItemDeLista {
+public class Compra extends ItemModel {
 
     private Data data;
-    private ListaDeObjetos itens;
+    private Model itens;
 
-    public Compra(Data data, ListaDeObjetos itens) {
+    public Compra(Data data, Model itens) {
 
         this.data = data;
         this.itens = itens;
@@ -20,7 +20,7 @@ public class Compra extends ItemDeLista {
         this.data = data;
     }
 
-    public ListaDeObjetos getItens() {
+    public Model getItens() {
         return (this.itens);
     }
 

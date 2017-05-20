@@ -7,12 +7,12 @@ package GwMarket;
  * @author diego
  *
  */
-public class ItemDeLista {
+public class ItemModel {
 
 	/**
 	 * 
 	 */
-	public ItemDeLista() {
+	public ItemModel() {
 		
 	}
 

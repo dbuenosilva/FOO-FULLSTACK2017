@@ -1,6 +1,6 @@
 package GwMarket;
 
-public class FormaDePagamento extends ItemDeLista {
+public class FormaDePagamento extends ItemModel {
 
     private String id;
     private String descricao;

@@ -6,83 +6,83 @@ public class Principal {
 
     public static void main(String[] args) {
 
-        Menu menu = new Menu();
+        View view = new View();
         
-        menu.setOpcao(menu.menuInicial() );
+        view.setOpcao(view.viewInicial() );
 
-        while (! menu.getOpcao().equals("0")) {
+        while (! view.getOpcao().equals("0")) {
 
-            if (menu.getOpcao().equals("0") || (menu.getOpcao().equals("1") || (menu.getOpcao().equals("2") || (menu.getOpcao().equals("3") || (menu.getOpcao().equals("4")))))) {
+            if (view.getOpcao().equals("0") || (view.getOpcao().equals("1") || (view.getOpcao().equals("2") || (view.getOpcao().equals("3") || (view.getOpcao().equals("4")))))) {
 
-                if (menu.getOpcao().equals("1")) { //Se Cadastro.
-                    menu.setOpcao2(menu.subMenu());
-                    if ((menu.getOpcao2().equals("0")) || (menu.getOpcao2().equals("1")) || (menu.getOpcao2().equals("2"))
-                            || (menu.getOpcao2().equals("3")) || (menu.getOpcao2().equals("4")) || (menu.getOpcao2().equals("5")) || (menu.getOpcao2().equals("6"))
-                            || (menu.getOpcao2().equals("7")) || (menu.getOpcao2().equals("8"))) {
+                if (view.getOpcao().equals("1")) { //Se Cadastro.
+                    view.setOpcao2(view.subview());
+                    if ((view.getOpcao2().equals("0")) || (view.getOpcao2().equals("1")) || (view.getOpcao2().equals("2"))
+                            || (view.getOpcao2().equals("3")) || (view.getOpcao2().equals("4")) || (view.getOpcao2().equals("5")) || (view.getOpcao2().equals("6"))
+                            || (view.getOpcao2().equals("7")) || (view.getOpcao2().equals("8"))) {
 
-                        if (menu.getOpcao2().equals("1")) {
-                            menu.cadFormaPagto();
-                        } else if (menu.getOpcao2().equals("2")) {
-                            menu.cadUnidadeDeMedida();
-                        } else if (menu.getOpcao2().equals("3")) {
-                            menu.cadProduto();
-                        } else if (menu.getOpcao2().equals("4")) {
-                            menu.cadCargo();
-                        } else if (menu.getOpcao2().equals("5")) {
-                            menu.cadFuncionario();
-                        } else if (menu.getOpcao2().equals("6")) {
-                            menu.cadCliente();
-                        } else if (menu.getOpcao2().equals("7")) {
-                            menu.cadBalanca();
-                        } else if (menu.getOpcao2().equals("8")) {
-                            menu.cadCaixa();
-                        } else if (menu.getOpcao2().equals("0")) {
-                            menu.setOpcao(menu.menuInicial());
+                        if (view.getOpcao2().equals("1")) {
+                            view.cadFormaPagto();
+                        } else if (view.getOpcao2().equals("2")) {
+                            view.cadUnidadeDeMedida();
+                        } else if (view.getOpcao2().equals("3")) {
+                            view.cadProduto();
+                        } else if (view.getOpcao2().equals("4")) {
+                            view.cadCargo();
+                        } else if (view.getOpcao2().equals("5")) {
+                            view.cadFuncionario();
+                        } else if (view.getOpcao2().equals("6")) {
+                            view.cadCliente();
+                        } else if (view.getOpcao2().equals("7")) {
+                            view.cadBalanca();
+                        } else if (view.getOpcao2().equals("8")) {
+                            view.cadCaixa();
+                        } else if (view.getOpcao2().equals("0")) {
+                            view.setOpcao(view.viewInicial());
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Por favor digite uma opção correta.");
-                        menu.setOpcao2(menu.subMenu());
+                        view.setOpcao2(view.subview());
                     }
                 }
-                if (menu.getOpcao().equals("2")) {//Se Relatorios.
-                	menu.setOpcao2( menu.subMenu() );
-                    if ((menu.getOpcao2().equals("0")) || (menu.getOpcao2().equals("1")) || (menu.getOpcao2().equals("2"))
-                            || (menu.getOpcao2().equals("3")) || (menu.getOpcao2().equals("4")) || (menu.getOpcao2().equals("5")) || (menu.getOpcao2().equals("6"))
-                            || (menu.getOpcao2().equals("7")) || (menu.getOpcao2().equals("8"))) {
+                if (view.getOpcao().equals("2")) {//Se Relatorios.
+                	view.setOpcao2( view.subview() );
+                    if ((view.getOpcao2().equals("0")) || (view.getOpcao2().equals("1")) || (view.getOpcao2().equals("2"))
+                            || (view.getOpcao2().equals("3")) || (view.getOpcao2().equals("4")) || (view.getOpcao2().equals("5")) || (view.getOpcao2().equals("6"))
+                            || (view.getOpcao2().equals("7")) || (view.getOpcao2().equals("8"))) {
 
-                        if (menu.getOpcao2().equals("1")) {
-                            menu.relFormaPagto();
-                        } else if (menu.getOpcao2().equals("2")) {
-                            menu.relUnidadeDeMedida();
-                        } else if (menu.getOpcao2().equals("3")) {
-                            menu.relProduto();
-                        } else if (menu.getOpcao2().equals("4")) {
-                            menu.relCargo();
-                        } else if (menu.getOpcao2().equals("5")) {
-                            menu.relFuncionario();
-                        } else if (menu.getOpcao2().equals("6")) {
-                            menu.relCliente();
-                        } else if (menu.getOpcao2().equals("7")) {
-                            menu.relBalanca();
-                        } else if (menu.getOpcao2().equals("8")) {
-                            menu.relCaixa();
-                        } else if (menu.getOpcao2().equals("0")) {
-                        	menu.setOpcao( menu.menuInicial()) ;
+                        if (view.getOpcao2().equals("1")) {
+                            view.relFormaPagto();
+                        } else if (view.getOpcao2().equals("2")) {
+                            view.relUnidadeDeMedida();
+                        } else if (view.getOpcao2().equals("3")) {
+                            view.relProduto();
+                        } else if (view.getOpcao2().equals("4")) {
+                            view.relCargo();
+                        } else if (view.getOpcao2().equals("5")) {
+                            view.relFuncionario();
+                        } else if (view.getOpcao2().equals("6")) {
+                            view.relCliente();
+                        } else if (view.getOpcao2().equals("7")) {
+                            view.relBalanca();
+                        } else if (view.getOpcao2().equals("8")) {
+                            view.relCaixa();
+                        } else if (view.getOpcao2().equals("0")) {
+                        	view.setOpcao( view.viewInicial()) ;
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Por favor digite uma opção correta.");
-                        menu.setOpcao( menu.menuInicial()) ;
+                        view.setOpcao( view.viewInicial()) ;
 
                     }
                 }
                 
-                if (menu.getOpcao().equals("3")) {//Se venda
-                	menu.venda();               	
+                if (view.getOpcao().equals("3")) {//Se venda
+                	view.venda();               	
                 }
 
             } else {
                 JOptionPane.showMessageDialog(null, "Por favor digite uma opção correta.");
-                menu.setOpcao(menu.menuInicial());
+                view.setOpcao(view.viewInicial());
             }
         }
     }

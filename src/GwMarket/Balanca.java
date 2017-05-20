@@ -1,6 +1,6 @@
 package GwMarket;
 
-public class Balanca extends ItemDeLista{
+public class Balanca extends ItemModel{
 
     private String id;
     private String descricao;
@@ -47,7 +47,7 @@ public class Balanca extends ItemDeLista{
     }
     @Override
     public String toString(){   
-        return( getId() + " - " + getDescricao() );
+        return( getId() + " - " + getDescricao() + "\n" );
     }
 
 }

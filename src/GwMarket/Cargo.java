@@ -1,6 +1,6 @@
 package GwMarket;
 
-public class Cargo extends ItemDeLista {
+public class Cargo extends ItemModel {
 
     private String id;
     private String descricao;

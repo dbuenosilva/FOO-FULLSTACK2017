@@ -5,19 +5,19 @@ import java.util.Iterator;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-public class Menu implements  ListadeCodigosDeMensagensDeErros {
+public class View implements  ListadeCodigosDeMensagensDeErros {
 
     // Simula as tabelas no Banco de Dados .
-    private ListaDeObjetos cadastroDeClientes = new ListaDeObjetos();
-    private ListaDeObjetos cadastroDeFuncionarios = new ListaDeObjetos();
-    private ListaDeObjetos cadastroDeCargos = new ListaDeObjetos();
-    private ListaDeObjetos cadastroDeCaixas = new ListaDeObjetos();
-    private ListaDeObjetos cadastroDeBalancas = new ListaDeObjetos();
-    private ListaDeObjetos cadastroDeFormaDePagamento = new ListaDeObjetos();
-    private ListaDeObjetos cadastroDeProdutos = new ListaDeObjetos();
-    private ListaDeObjetos cadastroDeUnidadeDeMedidas = new ListaDeObjetos();
-    private ListaDeObjetos cadastroDeVendasRealizadas = new ListaDeObjetos();
-    private ListaDeObjetos cadastroDeComprasRealizadas = new ListaDeObjetos();
+    private Model cadastroDeClientes = new Model();
+    private Model cadastroDeFuncionarios = new Model();
+    private Model cadastroDeCargos = new Model();
+    private Model cadastroDeCaixas = new Model();
+    private Model cadastroDeBalancas = new Model();
+    private Model cadastroDeFormaDePagamento = new Model();
+    private Model cadastroDeProdutos = new Model();
+    private Model cadastroDeUnidadeDeMedidas = new Model();
+    private Model cadastroDeVendasRealizadas = new Model();
+    private Model cadastroDeComprasRealizadas = new Model();
 
     private String impressao;
     private boolean resultPermiteTroco = false;
@@ -41,9 +41,9 @@ public class Menu implements  ListadeCodigosDeMensagensDeErros {
     	this.opcao2 = opc2;
     }
     
-    public String menuInicial() {
-        String opcaoDeMenuEmCaracter = JOptionPane.showInputDialog(null, "Seja Bem Vindo ! \n"
-                + "Menu de opções: \n"
+    public String viewInicial() {
+        String opcaoDeviewEmCaracter = JOptionPane.showInputDialog(null, "Seja Bem Vindo ! \n"
+                + "\n"
                 + "\n"
                 + "1 - Cadastros \n"
                 + "2 - Relatórios \n"
@@ -53,11 +53,11 @@ public class Menu implements  ListadeCodigosDeMensagensDeErros {
                 + "0 - Sair "
          ,"INICIO" , JOptionPane.PLAIN_MESSAGE);
 
-        return (opcaoDeMenuEmCaracter);
+        return (opcaoDeviewEmCaracter);
     }
 
-    public String subMenu() {
-        String opcaoDeMenuEmCaracter = JOptionPane.showInputDialog(null, " \n"
+    public String subview() {
+        String opcaoDeviewEmCaracter = JOptionPane.showInputDialog(null, " \n"
                 + "1 - Forma de Pagamento \n"
                 + "2 - Unidade de Medida \n"
                 + "3 - Produtos \n"
@@ -70,7 +70,7 @@ public class Menu implements  ListadeCodigosDeMensagensDeErros {
                 + "Digite 0 para Voltar ao menu inicial"
           ,  ( this.opcao.equals("1")  ) ?  "CADASTROS" : ( this.opcao.equals("2") ? "RELATORIOS" : ( this.opcao.equals("3") ? "VENDA" : "COMPRA" ) )  , JOptionPane.PLAIN_MESSAGE);
 
-        return (opcaoDeMenuEmCaracter);
+        return (opcaoDeviewEmCaracter);
     }
 
     
@@ -99,19 +99,35 @@ public class Menu implements  ListadeCodigosDeMensagensDeErros {
     public void cadCaixa() {
         String codigoEmCaracter = JOptionPane.showInputDialog("Digite o codigo do caixa : ");
         String nomeDoCaixa      = JOptionPane.showInputDialog("Digite a descrição do caixa : ");
+
+        Funcionario operador;
+        final JComboBox<Funcionario> comboOperador = new JComboBox<Funcionario>();
+        Iterator i = cadastroDeFuncionarios.getLista().iterator();
+        while (i.hasNext()) {
+            operador = (Funcionario) i.next();
+            comboOperador.addItem(operador);
+        }
+        String[] options = {"OK", "Cancel"};
+        JOptionPane.showOptionDialog(null, comboOperador, "Informe o Operador do Caixa :",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                options, options[0]);
+        operador = (Funcionario) comboOperador.getSelectedItem();
+        
+        
+        // Escolha da Balanca
         final JComboBox<Balanca> combo = new JComboBox<Balanca>();
-        Iterator i = cadastroDeBalancas.getLista().iterator();
+        i = cadastroDeBalancas.getLista().iterator();
         while (i.hasNext()) {
             Balanca cb = (Balanca) i.next();
             combo.addItem(cb);
         }
-        String[] options = {"OK", "Cancel"};
-        JOptionPane.showOptionDialog(null, combo, "Digite a balanca :",
+        //String[] options = {"OK", "Cancel"};
+        JOptionPane.showOptionDialog(null, combo, "Informa a balanca utilizada por este Caixa :",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 options, options[0]);
         Balanca balanca = (Balanca) combo.getSelectedItem();
 
-        cadastroDeCaixas.adicionaNaLista(new Caixa(codigoEmCaracter, nomeDoCaixa, balanca));
+        cadastroDeCaixas.adicionaNaLista(new Caixa(codigoEmCaracter, nomeDoCaixa, operador, balanca));
     }
 
     public void cadProduto() {
@@ -174,10 +190,10 @@ public class Menu implements  ListadeCodigosDeMensagensDeErros {
         String codigoEmNumeros = JOptionPane.showInputDialog("Digite o codigo do Cliente.");
         //int codigoEmNumeros = Integer.parseInt(codigoEmCaracter);
         String nome = JOptionPane.showInputDialog("Digite o Nome do Cliente.");
-        String cpf = JOptionPane.showInputDialog("Digite o cpf do Cliente.");
-        String rg = JOptionPane.showInputDialog("Digite o Rg do Cliente.");
+        String cpf = JOptionPane.showInputDialog("Digite o CPF/CNPJ do Cliente.");
+        String rg = JOptionPane.showInputDialog("Digite o Rg/IE do Cliente.");
         String endereco = JOptionPane.showInputDialog("Digite o Endereço do Cliente.");
-        String nascimento = JOptionPane.showInputDialog("Digite a data de nascimento do Cliente.");
+        String nascimento = JOptionPane.showInputDialog("Digite a data de nascimento/abertura.");
 
         int vetor[] = {Integer.parseInt(nascimento.substring(0, 2)), Integer.parseInt(nascimento.substring(3, 5)), Integer.parseInt(nascimento.substring(6, 10))};
 
@@ -202,6 +218,10 @@ public class Menu implements  ListadeCodigosDeMensagensDeErros {
             combo.addItem(cg);
         }
         String[] options = {"OK", "Cancel"};
+        JOptionPane.showOptionDialog(null, combo, "Informe o cargo do Funcionario :",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                options, options[0]);
+        
         Cargo cargo = (Cargo) combo.getSelectedItem();
 
         cadastroDeFuncionarios.adicionaNaLista(new Funcionario(codigo, nome, new Data(vetor[0], vetor[1], vetor[2]), cpf, rg, cargo));
@@ -290,7 +310,7 @@ public class Menu implements  ListadeCodigosDeMensagensDeErros {
             Produto p = (Produto) i.next();
             this.impressao += p;
         }
-        JOptionPane.showMessageDialog(null, this.impressao,  "Relatório de Formas de Produtos" , JOptionPane.PLAIN_MESSAGE  );
+        JOptionPane.showMessageDialog(null, this.impressao,  "Relatório de Produtos" , JOptionPane.PLAIN_MESSAGE  );
 
 
     }
@@ -315,7 +335,7 @@ public class Menu implements  ListadeCodigosDeMensagensDeErros {
             Caixa cx = (Caixa) i.next();
             this.impressao += cx;
         }
-        JOptionPane.showMessageDialog(null, this.impressao,  "Relatório de Formas de Pagamento" , JOptionPane.PLAIN_MESSAGE  );
+        JOptionPane.showMessageDialog(null, this.impressao,  "Relatório de Caixas" , JOptionPane.PLAIN_MESSAGE  );
 
     }
     
@@ -345,7 +365,7 @@ public class Menu implements  ListadeCodigosDeMensagensDeErros {
         
         while(true) {
         
-        	JOptionPane.showOptionDialog(null, combo, "CAIXA :",
+        	JOptionPane.showOptionDialog(null, combo, "Efetura venda pelo caixa :",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                 options, options[0]);
 
@@ -355,7 +375,8 @@ public class Menu implements  ListadeCodigosDeMensagensDeErros {
         		break;
         	}
         	else {
-                JOptionPane.showMessageDialog(null, "Operador " + caixa.getOperador().getNome() + " do caixa " + caixa.getDescricao() + " não tem acesso a vendas!", "Permissão de Venda" , JOptionPane.PLAIN_MESSAGE  );	
+                JOptionPane.showMessageDialog(null, "Operador " + caixa.getOperador().getNome() + " do caixa " + caixa.getDescricao() + " não tem acesso a vendas!", "Permissão de Venda" , JOptionPane.PLAIN_MESSAGE  );
+                this.setOpcao(this.viewInicial());
         	}
            
         } 
@@ -379,7 +400,7 @@ public class Menu implements  ListadeCodigosDeMensagensDeErros {
                }
                // String[] options = {"OK", "Cancel"};
                             
-              JOptionPane.showOptionDialog(null, combo, "Produto :",
+              JOptionPane.showOptionDialog(null, comboProduto, "Produto :",
                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                        options, options[0]);
 
@@ -395,7 +416,7 @@ public class Menu implements  ListadeCodigosDeMensagensDeErros {
               }
               // String[] options = {"OK", "Cancel"};
                 
-             JOptionPane.showOptionDialog(null, combo, "Unidade De Medida :",
+             JOptionPane.showOptionDialog(null, comboUM, "Unidade De Medida :",
                       JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                       options, options[0]);
 
@@ -417,14 +438,16 @@ public class Menu implements  ListadeCodigosDeMensagensDeErros {
              }                   
          	else {
                 JOptionPane.showMessageDialog(null, "Produto  " + produto.getDescricao() + " não configurado para Unidade de Medida " + um.getDescricao() + "!", "Permissão de Venda" , JOptionPane.PLAIN_MESSAGE  );
-                continue;
+                if ( JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Deseja adicionar mais produtos?", "Adicionar mais produtos", JOptionPane.YES_NO_OPTION ) ) {
+               	 continua = false;
+                }
         	}
               
          }
         	
         }
         else {
-            JOptionPane.showMessageDialog(null, codigos[result].getDescricao() , "Iniciar Venda" , JOptionPane.PLAIN_MESSAGE  );	        	
+            JOptionPane.showMessageDialog(null, codigos[result].getDescricao() , "Iniciar Venda" , JOptionPane.PLAIN_MESSAGE  );           
         }     
     }        
 }

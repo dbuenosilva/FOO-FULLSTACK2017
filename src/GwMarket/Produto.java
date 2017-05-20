@@ -1,6 +1,6 @@
 package GwMarket;
 
-public class Produto extends ItemDeLista implements ListadeCodigosDeMensagensDeErros {
+public class Produto extends ItemModel implements ListadeCodigosDeMensagensDeErros {
     
     private String id;
     private String descricao;

@@ -1,6 +1,6 @@
 package GwMarket;
 
-public class Caixa extends ItemDeLista implements ListadeCodigosDeMensagensDeErros {
+public class Caixa extends ItemModel implements ListadeCodigosDeMensagensDeErros {
 
     private String id;
     private String descricao;
@@ -11,15 +11,16 @@ public class Caixa extends ItemDeLista implements ListadeCodigosDeMensagensDeErr
     public Caixa() {
     }
 
-    public Caixa(String id, String descricao, Balanca balanca) {
+    public Caixa(String id, String descricao, Funcionario operador, Balanca balanca) {
 
         this.id = id;
         this.descricao = descricao;
+        this.operador  = operador;
         this.balanca = balanca;
 
     }
 
-    public Caixa(String id, Funcionario operador) {
+    public Caixa(String id, String descricao) {
         this.id = id;
         this.operador = operador;
     }
@@ -112,7 +113,7 @@ public class Caixa extends ItemDeLista implements ListadeCodigosDeMensagensDeErr
 
         if (produto.checarEstoque(quantidade, unidadeDeMedida) == SUCESSO
                 && produto.atualizaEstoque(quantidade * (-1), unidadeDeMedida) == SUCESSO) {
-            vendaSendoRealiza.getItens().adicionaNaLista(new Item(produto, quantidade, unidadeDeMedida));
+            vendaSendoRealiza.getItens().adicionaNaLista(new ItemDaVenda(produto, quantidade, unidadeDeMedida));
         } else {
             return (ERR_SALDO);
         }
@@ -120,7 +121,7 @@ public class Caixa extends ItemDeLista implements ListadeCodigosDeMensagensDeErr
         return (SUCESSO);
     }
 
-    public int finalizarVenda(ListaDeObjetos relacaoDeVendasRealizadas) {
+    public int finalizarVenda(Model relacaoDeVendasRealizadas) {
 
         if (this.vendaSendoRealiza != null) {
             relacaoDeVendasRealizadas.adicionaNaLista(this.vendaSendoRealiza);
@@ -133,7 +134,7 @@ public class Caixa extends ItemDeLista implements ListadeCodigosDeMensagensDeErr
     
      @Override
     public String toString(){
-        return( getId() + " - "+getDescricao());
+        return( getId() + " - "+getDescricao() + "\n" );
     }   
 
 }

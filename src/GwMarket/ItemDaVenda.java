@@ -1,16 +1,16 @@
 package GwMarket;
 
-public class Item extends ItemDeLista {
+public class ItemDaVenda extends ItemModel {
 
     private Produto produto;
     private double quantidade;
     private UnidadeDeMedida unidadeDeMedida;
     private double valorUnitario;
 
-    public Item() {
+    public ItemDaVenda() {
     }
 
-    public Item(Produto produto, double quantidade, UnidadeDeMedida unidadeDeMedida) {
+    public ItemDaVenda(Produto produto, double quantidade, UnidadeDeMedida unidadeDeMedida) {
 
         this.produto = produto;
         this.quantidade = quantidade;
