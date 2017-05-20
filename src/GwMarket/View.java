@@ -244,7 +244,7 @@ public class View implements ListadeCodigosDeMensagensDeErros {
         Iterator i = cadastroDeUnidadeDeMedidas.getLista().iterator();
         while (i.hasNext()) {
             UnidadeDeMedida u = (UnidadeDeMedida) i.next();
-            this.impressao += u;
+            this.impressao += u + "\n";
         }
         JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Unidade de Medida", JOptionPane.PLAIN_MESSAGE);
 
@@ -255,7 +255,7 @@ public class View implements ListadeCodigosDeMensagensDeErros {
         Iterator i = cadastroDeClientes.getLista().iterator();
         while (i.hasNext()) {
             Cliente c = (Cliente) i.next();
-            this.impressao += c;
+            this.impressao += c + "\n";
         }
         JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Formas de Clientes", JOptionPane.PLAIN_MESSAGE);
 
@@ -266,7 +266,7 @@ public class View implements ListadeCodigosDeMensagensDeErros {
         Iterator i = cadastroDeFuncionarios.getLista().iterator();
         while (i.hasNext()) {
             Funcionario fun = (Funcionario) i.next();
-            this.impressao += fun;
+            this.impressao += fun + "\n";
         }
         JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Funcionários", JOptionPane.PLAIN_MESSAGE);
 
@@ -277,7 +277,7 @@ public class View implements ListadeCodigosDeMensagensDeErros {
         Iterator i = cadastroDeCargos.getLista().iterator();
         while (i.hasNext()) {
             Cargo cg = (Cargo) i.next();
-            this.impressao += cg;
+            this.impressao += cg + "\n";
         }
         JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Cargos", JOptionPane.PLAIN_MESSAGE);
 
@@ -289,7 +289,7 @@ public class View implements ListadeCodigosDeMensagensDeErros {
 
         while (i.hasNext()) {
             FormaDePagamento f = (FormaDePagamento) i.next();
-            this.impressao += f;
+            this.impressao += f + "\n";
         }
         JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Formas de Pagamento", JOptionPane.PLAIN_MESSAGE);
 
@@ -301,7 +301,7 @@ public class View implements ListadeCodigosDeMensagensDeErros {
 
         while (i.hasNext()) {
             Produto p = (Produto) i.next();
-            this.impressao += p;
+            this.impressao += p + "\n";
         }
         JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Produtos", JOptionPane.PLAIN_MESSAGE);
 
@@ -313,7 +313,7 @@ public class View implements ListadeCodigosDeMensagensDeErros {
 
         while (i.hasNext()) {
             Balanca b = (Balanca) i.next();
-            this.impressao += b;
+            this.impressao += b + "\n";
         }
         JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Balanças", JOptionPane.PLAIN_MESSAGE);
 
@@ -325,7 +325,7 @@ public class View implements ListadeCodigosDeMensagensDeErros {
 
         while (i.hasNext()) {
             Caixa cx = (Caixa) i.next();
-            this.impressao += cx;
+            this.impressao += cx + "\n";
         }
         JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Caixas", JOptionPane.PLAIN_MESSAGE);
 
@@ -352,7 +352,7 @@ public class View implements ListadeCodigosDeMensagensDeErros {
 
         while (true) {
 
-            JOptionPane.showOptionDialog(null, combo, "Efetura venda pelo caixa :",
+            JOptionPane.showOptionDialog(null, combo, "Efetuar venda pelo caixa :",
                     JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
                     options, options[0]);
 
@@ -373,6 +373,21 @@ public class View implements ListadeCodigosDeMensagensDeErros {
 
             boolean continua = true;
 
+            // Obtem o cliente da venda
+
+            // Monta combo para escolha do cliente
+            final JComboBox<Cliente> comboCliente = new JComboBox<Cliente>();
+            i = cadastroDeClientes.getLista().iterator();
+            while (i.hasNext()) {
+                comboCliente.addItem((Cliente) i.next());
+            }
+            
+            JOptionPane.showOptionDialog(null, comboCliente, "Cliente :",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                    options, options[0]);
+            
+            caixa.getVenda().setCliente( (Cliente) comboCliente.getSelectedItem() );            
+            
             while (continua) {
 
                 // Monta combo para escolha do produto
@@ -412,7 +427,8 @@ public class View implements ListadeCodigosDeMensagensDeErros {
                     String stringConstante = JOptionPane.showInputDialog("Informe a Quantidade em " + um.getDescricao());
                     double quantidade = Double.parseDouble(stringConstante);
 
-                    if (caixa.addItemNaVenda(produto, quantidade, um) != SUCESSO) {
+                    result = caixa.addItemNaVenda(produto, quantidade, um);
+                    if (result != SUCESSO) {
                         JOptionPane.showMessageDialog(null, codigos[result].getDescricao(), "Adicionar novo Item na Venda", JOptionPane.PLAIN_MESSAGE);
                     }
 
@@ -421,13 +437,16 @@ public class View implements ListadeCodigosDeMensagensDeErros {
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Produto  " + produto.getDescricao() + " não configurado para Unidade de Medida " + um.getDescricao() + "!", "Permissão de Venda", JOptionPane.PLAIN_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Produto  " + produto.getDescricao() + " não configurado para Unidade de Medida " + um.getDescricao() + "!", "Unidade de Vendida Inválida", JOptionPane.PLAIN_MESSAGE);
                     if (JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Deseja adicionar mais produtos?", "Adicionar mais produtos", JOptionPane.YES_NO_OPTION)) {
                         continua = false;
                     }
                 }
 
             }
+            
+            caixa.finalizarVenda(relacaoDeVendasRealizadas);
+            
 
         } else {
             JOptionPane.showMessageDialog(null, codigos[result].getDescricao(), "Iniciar Venda", JOptionPane.PLAIN_MESSAGE);
@@ -452,73 +471,81 @@ public class View implements ListadeCodigosDeMensagensDeErros {
                 options, options[0]);
         recepcao.setFuncionario((Funcionario) comboOperador.getSelectedItem());
 
-        int result = recepcao.iniciarCompra();
+        if (recepcao.getOperador().getCargo().getAcessoAoEstoque()) {
 
-        if (result == SUCESSO) {
+            int result = recepcao.iniciarCompra();
 
-            boolean continua = true;
+            if (result == SUCESSO) {
+
+                boolean continua = true;
 
 //            String[] options = {"OK", "Cancel"};
-            while (continua) {
+                while (continua) {
 
-                // Monta combo para escolha do produto
-                Produto produto;
-                final JComboBox<Produto> comboProduto = new JComboBox<Produto>();
-                i = cadastroDeProdutos.getLista().iterator();
-                while (i.hasNext()) {
-                    produto = (Produto) i.next();
-                    comboProduto.addItem(produto);
-                }
-                // String[] options = {"OK", "Cancel"};
+                    // Monta combo para escolha do produto
+                    Produto produto;
+                    final JComboBox<Produto> comboProduto = new JComboBox<Produto>();
+                    i = cadastroDeProdutos.getLista().iterator();
+                    while (i.hasNext()) {
+                        produto = (Produto) i.next();
+                        comboProduto.addItem(produto);
+                    }
+                    // String[] options = {"OK", "Cancel"};
 
-                JOptionPane.showOptionDialog(null, comboProduto, "Produto :",
-                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                        options, options[0]);
+                    JOptionPane.showOptionDialog(null, comboProduto, "Produto :",
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                            options, options[0]);
 
-                produto = (Produto) comboProduto.getSelectedItem();
+                    produto = (Produto) comboProduto.getSelectedItem();
 
-                // Monta escolha de Unidade de Medida
-                UnidadeDeMedida um;
-                final JComboBox<UnidadeDeMedida> comboUM = new JComboBox<UnidadeDeMedida>();
-                i = cadastroDeUnidadeDeMedidas.getLista().iterator();
-                while (i.hasNext()) {
-                    um = (UnidadeDeMedida) i.next();
-                    comboUM.addItem(um);
-                }
-                // String[] options = {"OK", "Cancel"};
+                    // Monta escolha de Unidade de Medida
+                    UnidadeDeMedida um;
+                    final JComboBox<UnidadeDeMedida> comboUM = new JComboBox<UnidadeDeMedida>();
+                    i = cadastroDeUnidadeDeMedidas.getLista().iterator();
+                    while (i.hasNext()) {
+                        um = (UnidadeDeMedida) i.next();
+                        comboUM.addItem(um);
+                    }
+                    // String[] options = {"OK", "Cancel"};
 
-                JOptionPane.showOptionDialog(null, comboUM, "Unidade De Medida :",
-                        JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
-                        options, options[0]);
+                    JOptionPane.showOptionDialog(null, comboUM, "Unidade De Medida :",
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+                            options, options[0]);
 
-                um = (UnidadeDeMedida) comboUM.getSelectedItem();
+                    um = (UnidadeDeMedida) comboUM.getSelectedItem();
 
-                if (um.equals(produto.getPrimeiraUnidadeDeMedida()) || um.equals(produto.getSegundaUnidadeDeMedida())) {
+                    if (um.equals(produto.getPrimeiraUnidadeDeMedida()) || um.equals(produto.getSegundaUnidadeDeMedida())) {
 
-                    String stringConstante = JOptionPane.showInputDialog("Informe a Quantidade em " + um.getDescricao());
-                    double quantidade = Double.parseDouble(stringConstante);
+                        String stringConstante = JOptionPane.showInputDialog("Informe a Quantidade em " + um.getDescricao());
+                        double quantidade = Double.parseDouble(stringConstante);
 
-                    if (recepcao.addItemNaCompra(produto, quantidade, um) != SUCESSO) {
-                        JOptionPane.showMessageDialog(null, codigos[result].getDescricao(), "Adicionar novo Item na compra", JOptionPane.PLAIN_MESSAGE);
+                        result = recepcao.addItemNaCompra(produto, quantidade, um);
+                        if (result != SUCESSO) {
+                            JOptionPane.showMessageDialog(null, codigos[result].getDescricao(), "Adicionar novo Item na Venda", JOptionPane.PLAIN_MESSAGE);
+                        }
+
+                        if (JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Deseja adicionar mais produtos?", "Adicionar mais produtos", JOptionPane.YES_NO_OPTION)) {
+                            continua = false;
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Produto  " + produto.getDescricao() + " n„o configurado para Unidade de Medida " + um.getDescricao() + "!", "Permiss„o de compras", JOptionPane.PLAIN_MESSAGE);
+                        if (JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Deseja adicionar mais produtos?", "Adicionar mais produtos", JOptionPane.YES_NO_OPTION)) {
+                            continua = false;
+                        }
                     }
 
-                    if (JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Deseja adicionar mais produtos?", "Adicionar mais produtos", JOptionPane.YES_NO_OPTION)) {
-                        continua = false;
-                    }
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Produto  " + produto.getDescricao() + " não configurado para Unidade de Medida " + um.getDescricao() + "!", "Permissão de compras", JOptionPane.PLAIN_MESSAGE);
-                    if (JOptionPane.NO_OPTION == JOptionPane.showConfirmDialog(null, "Deseja adicionar mais produtos?", "Adicionar mais produtos", JOptionPane.YES_NO_OPTION)) {
-                        continua = false;
-                    }
                 }
 
+            } else {
+                JOptionPane.showMessageDialog(null, codigos[result].getDescricao(), "Iniciar compra", JOptionPane.PLAIN_MESSAGE);
             }
-
-        } else {
-            JOptionPane.showMessageDialog(null, codigos[result].getDescricao(), "Iniciar compra", JOptionPane.PLAIN_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"So Gerentes podem ter acesso!");
         }
     }
+    
 
     public void relCompra() {
 
@@ -540,8 +567,8 @@ public class View implements ListadeCodigosDeMensagensDeErros {
         Iterator i = relacaoDeVendasRealizadas.getLista().iterator();
 
         while (i.hasNext()) {
-            ItemDaVenda iv = (ItemDaVenda) i.next();
-            this.impressao += iv;
+            Venda venda = (Venda) i.next();
+            this.impressao += venda;
         }
         JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Vendas", JOptionPane.PLAIN_MESSAGE);
 

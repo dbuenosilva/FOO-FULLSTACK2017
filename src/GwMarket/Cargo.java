@@ -55,7 +55,7 @@ public class Cargo extends ItemModel {
 
     @Override
     public String toString() {
-        return ( getId() + " - " + getDescricao() + "\n");
+        return ( getId() + " - " + getDescricao() );
     }
 
 }

@@ -1,5 +1,9 @@
 package GwMarket;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 public class Caixa extends ItemModel implements ListadeCodigosDeMensagensDeErros {
 
     private String id;
@@ -111,7 +115,7 @@ public class Caixa extends ItemModel implements ListadeCodigosDeMensagensDeErros
 
     public int addItemNaVenda(Produto produto, double quantidade, UnidadeDeMedida unidadeDeMedida) {
 
-        if (produto.checarEstoque(quantidade, unidadeDeMedida) == SUCESSO
+        if (produto.checarEstoque(quantidade*(-1), unidadeDeMedida) == SUCESSO
                 && produto.atualizaEstoque(quantidade * (-1), unidadeDeMedida) == SUCESSO) {
         	this.vendaSendoRealiza.getItens().adicionaNaLista(new ItemDaVenda(produto, quantidade, unidadeDeMedida));
         } else {
@@ -124,6 +128,15 @@ public class Caixa extends ItemModel implements ListadeCodigosDeMensagensDeErros
     public int finalizarVenda(Model relacaoDeVendasRealizadas) {
 
         if (this.vendaSendoRealiza != null) {
+        	this.vendaSendoRealiza.setFuncionario(this.getOperador());
+        	
+        	Date date = new Date();
+        	LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        	int year  = localDate.getYear();
+        	int month = localDate.getMonthValue();
+        	int day   = localDate.getDayOfMonth();
+        	
+        	this.vendaSendoRealiza.setData( new Data( day, month, year  ));
             relacaoDeVendasRealizadas.adicionaNaLista(this.vendaSendoRealiza);
             this.vendaSendoRealiza = null;
         } else {
@@ -134,7 +147,7 @@ public class Caixa extends ItemModel implements ListadeCodigosDeMensagensDeErros
     
      @Override
     public String toString(){
-        return( getId() + " - "+getDescricao() + "\n" );
+        return( getId() + " - "+getDescricao()  );
     }   
 
 }

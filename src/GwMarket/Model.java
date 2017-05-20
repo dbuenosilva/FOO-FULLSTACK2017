@@ -30,12 +30,11 @@ public class Model {
 		return(this.listaDeObjetos);
 	}
 	
-	public String imprimeLista( Object obj) {
+	public String toString() {
 		String impressaoObj = "";
         Iterator i = this.getLista().iterator();
         while (i.hasNext()) {
-        	 obj =  i.next();
-        	impressaoObj += obj.toString();
+        	impressaoObj += i.next().toString();
         }
         return(impressaoObj);
 	}

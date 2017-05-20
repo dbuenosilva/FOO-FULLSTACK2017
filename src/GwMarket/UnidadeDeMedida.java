@@ -46,6 +46,6 @@ public class UnidadeDeMedida extends ItemModel{
     
    @Override
     public String toString(){  
-        return(getId()+" - "+getDescricao() + "\n");
+        return(getId()+" - "+getDescricao() );
     }
 }

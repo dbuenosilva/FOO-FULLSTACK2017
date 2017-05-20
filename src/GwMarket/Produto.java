@@ -14,6 +14,7 @@ public class Produto extends ItemModel implements ListadeCodigosDeMensagensDeErr
     public Produto(String id, String descricao) {
         this.id = id;
         this.descricao = descricao;
+ //this.saldoDoEstoqueNaPrimeiraUnidadeDeMedida = 1000;
     }
 
     public Produto(String id, String descricao, UnidadeDeMedida primeiraUnidadaDeMedida, double precoNaPrimeiraUnidadeDeMedida) {
@@ -21,6 +22,7 @@ public class Produto extends ItemModel implements ListadeCodigosDeMensagensDeErr
         this.descricao = descricao;
         this.primeiraUnidadeDeMedida = primeiraUnidadaDeMedida;
         this.precoNaPrimeiraUnidadeDeMedida = precoNaPrimeiraUnidadeDeMedida;
+ //this.saldoDoEstoqueNaPrimeiraUnidadeDeMedida = 1000;
     }
     
     public Produto(String id, String descricao, UnidadeDeMedida primeiraUnidadeDeMedida, UnidadeDeMedida segundaUnidadeDeMedida, double precoNaPrimeiraUnidadeDeMedida, double fatorDeConversao, char tipoDeConversao) {
@@ -32,6 +34,9 @@ public class Produto extends ItemModel implements ListadeCodigosDeMensagensDeErr
         this.precoNaPrimeiraUnidadeDeMedida = precoNaPrimeiraUnidadeDeMedida;
         this.fatorDeConversao = fatorDeConversao;
         this.tipoDeConversao = tipoDeConversao;
+ 
+ //this.saldoDoEstoqueNaPrimeiraUnidadeDeMedida = 1000;        
+        
      }
 
     public String getId() {
@@ -183,7 +188,7 @@ public class Produto extends ItemModel implements ListadeCodigosDeMensagensDeErr
 
     @Override
     public String toString() {
-        return ( getId() + " - " + getDescricao() + "\n"); 
+        return ( getId() + " - " + getDescricao() ); 
     }
 
 }

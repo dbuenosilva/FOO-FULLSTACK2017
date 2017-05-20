@@ -47,7 +47,7 @@ public class Balanca extends ItemModel{
     }
     @Override
     public String toString(){   
-        return( getId() + " - " + getDescricao() + "\n" );
+        return( getId() + " - " + getDescricao() );
     }
 
 }

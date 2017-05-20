@@ -48,12 +48,12 @@ public class Principal {
 		    	 break;
 		     case '/':
 		     {
-		 //   	 try {
+		    	 try {
 		    		 resultado = c.divide( );	 
-		  //  	 }
-		    //	 catch ( DivisaoPorZeroExecption e ) {
-		   // 		 JOptionPane.showMessageDialog(null, "Não pode-se dividir por zero!",  "Valor B" , JOptionPane.PLAIN_MESSAGE  );	    		 
-		 //   	 }
+		    	 }
+		    	 catch ( DivisaoPorZeroExecption e ) {
+		    		 JOptionPane.showMessageDialog(null, "Não pode-se dividir por zero!",  "Valor B" , JOptionPane.PLAIN_MESSAGE  );	    		 
+		    	 }
 		    		 
 
 		    		 /***

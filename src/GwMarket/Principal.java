@@ -62,7 +62,7 @@ public class Principal {
                             view.relFuncionario();
                         } else if (view.getOpcao2().equals("6")) {
                             view.relCliente();
-                        } else if (view.getOpcao2().equals("7")) {
+                        } else if (view.getOpcao2().equals("7")) { 
                             view.relBalanca();
                         } else if (view.getOpcao2().equals("8")) {
                             view.relCaixa();
