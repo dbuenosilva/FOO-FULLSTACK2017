@@ -11,6 +11,7 @@ public class Venda extends ItemModel {
     private Funcionario funcionario;
 
     public Venda() {
+    	 this.itens = new Model();
     }
 
     public Venda(double valorTotalDaVenda, FormaDePagamento formaDePagamento, double valorEntreguePeloCliente, Data data, Caixa caixa, Funcionario funcionario) {
@@ -21,6 +22,7 @@ public class Venda extends ItemModel {
         this.data = data;
         this.caixa = caixa;
         this.funcionario = funcionario;
+        this.itens = new Model();
 
     }
 

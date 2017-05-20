@@ -103,7 +103,7 @@ public class Caixa extends ItemModel implements ListadeCodigosDeMensagensDeErros
         } else if (this.vendaSendoRealiza != null) {
             return (ERR_VENDA_JA_EM_EXECUCAO);
         } else {
-            vendaSendoRealiza = new Venda();
+        	this.vendaSendoRealiza = new Venda();
         }
 
         return (SUCESSO);
@@ -113,7 +113,7 @@ public class Caixa extends ItemModel implements ListadeCodigosDeMensagensDeErros
 
         if (produto.checarEstoque(quantidade, unidadeDeMedida) == SUCESSO
                 && produto.atualizaEstoque(quantidade * (-1), unidadeDeMedida) == SUCESSO) {
-            vendaSendoRealiza.getItens().adicionaNaLista(new ItemDaVenda(produto, quantidade, unidadeDeMedida));
+        	this.vendaSendoRealiza.getItens().adicionaNaLista(new ItemDaVenda(produto, quantidade, unidadeDeMedida));
         } else {
             return (ERR_SALDO);
         }
