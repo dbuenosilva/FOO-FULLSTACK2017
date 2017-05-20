@@ -30,7 +30,7 @@ public class Funcionario extends Pessoa {
     @Override
     public String toString() {
 
-        return ("Matricula : " + this.getMatricula() + ", Nome : " + this.getNome() + ", Nascimento : " + getNascimento() + ", Cargo : " + getCargo()+ ", Cpf : " + getCPF() + ", Rg : " + getRg() + "\n");
+        return ( this.getMatricula() + " - " + this.getNome() + "\n");
 
     }
 

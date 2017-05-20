@@ -26,5 +26,13 @@ public class CodigoDeMensagensDeErro  {
 	public String getDescricao() {
 		return(this.descricao);
 	}
+	
+	public int getCodigo(){
+		return(this.codigo);
+	}
+	
+	public String toString(){
+		return(this.getCodigo() + " - " + this.getDescricao() );
+	}
 
 }

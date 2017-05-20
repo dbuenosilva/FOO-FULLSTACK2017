@@ -7,80 +7,82 @@ public class Principal {
     public static void main(String[] args) {
 
         Menu menu = new Menu();
-        String opcao;
-        String opcao2;
+        
+        menu.setOpcao(menu.menuInicial() );
 
-        opcao = menu.menuInicial();
+        while (! menu.getOpcao().equals("0")) {
 
-        while (!opcao.equals("0")) {
+            if (menu.getOpcao().equals("0") || (menu.getOpcao().equals("1") || (menu.getOpcao().equals("2") || (menu.getOpcao().equals("3") || (menu.getOpcao().equals("4")))))) {
 
-            if (opcao.equals("0") || (opcao.equals("1") || (opcao.equals("2") || (opcao.equals("3") || (opcao.equals("4")))))) {
+                if (menu.getOpcao().equals("1")) { //Se Cadastro.
+                    menu.setOpcao2(menu.subMenu());
+                    if ((menu.getOpcao2().equals("0")) || (menu.getOpcao2().equals("1")) || (menu.getOpcao2().equals("2"))
+                            || (menu.getOpcao2().equals("3")) || (menu.getOpcao2().equals("4")) || (menu.getOpcao2().equals("5")) || (menu.getOpcao2().equals("6"))
+                            || (menu.getOpcao2().equals("7")) || (menu.getOpcao2().equals("8"))) {
 
-                if (opcao.equals("1")) {//Se Cadastro.
-                    opcao2 = menu.subMenu();
-                    if ((opcao2.equals("0")) || (opcao2.equals("1")) || (opcao2.equals("2"))
-                            || (opcao2.equals("3")) || (opcao2.equals("4")) || (opcao2.equals("5")) || (opcao2.equals("6"))
-                            || (opcao2.equals("7")) || (opcao2.equals("8"))) {
-
-                        if (opcao2.equals("1")) {
+                        if (menu.getOpcao2().equals("1")) {
                             menu.cadFormaPagto();
-                        } else if (opcao2.equals("2")) {
+                        } else if (menu.getOpcao2().equals("2")) {
                             menu.cadUnidadeDeMedida();
-                        } else if (opcao2.equals("3")) {
+                        } else if (menu.getOpcao2().equals("3")) {
                             menu.cadProduto();
-                        } else if (opcao2.equals("4")) {
+                        } else if (menu.getOpcao2().equals("4")) {
                             menu.cadCargo();
-                        } else if (opcao2.equals("5")) {
+                        } else if (menu.getOpcao2().equals("5")) {
                             menu.cadFuncionario();
-                        } else if (opcao2.equals("6")) {
+                        } else if (menu.getOpcao2().equals("6")) {
                             menu.cadCliente();
-                        } else if (opcao2.equals("7")) {
+                        } else if (menu.getOpcao2().equals("7")) {
                             menu.cadBalanca();
-                        } else if (opcao2.equals("8")) {
+                        } else if (menu.getOpcao2().equals("8")) {
                             menu.cadCaixa();
-                        } else if (opcao2.equals("0")) {
-                            opcao = menu.menuInicial();
+                        } else if (menu.getOpcao2().equals("0")) {
+                            menu.setOpcao(menu.menuInicial());
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Por favor digite uma opção correta.");
-                        opcao2 = menu.subMenu();
+                        menu.setOpcao2(menu.subMenu());
                     }
                 }
-                if (opcao.equals("2")) {//Se Cadastro.
-                    opcao2 = menu.subMenu();
-                    if ((opcao2.equals("0")) || (opcao2.equals("1")) || (opcao2.equals("2"))
-                            || (opcao2.equals("3")) || (opcao2.equals("4")) || (opcao2.equals("5")) || (opcao2.equals("6"))
-                            || (opcao2.equals("7")) || (opcao2.equals("8"))) {
+                if (menu.getOpcao().equals("2")) {//Se Relatorios.
+                	menu.setOpcao2( menu.subMenu() );
+                    if ((menu.getOpcao2().equals("0")) || (menu.getOpcao2().equals("1")) || (menu.getOpcao2().equals("2"))
+                            || (menu.getOpcao2().equals("3")) || (menu.getOpcao2().equals("4")) || (menu.getOpcao2().equals("5")) || (menu.getOpcao2().equals("6"))
+                            || (menu.getOpcao2().equals("7")) || (menu.getOpcao2().equals("8"))) {
 
-                        if (opcao2.equals("1")) {
+                        if (menu.getOpcao2().equals("1")) {
                             menu.relFormaPagto();
-                        } else if (opcao2.equals("2")) {
+                        } else if (menu.getOpcao2().equals("2")) {
                             menu.relUnidadeDeMedida();
-                        } else if (opcao2.equals("3")) {
+                        } else if (menu.getOpcao2().equals("3")) {
                             menu.relProduto();
-                        } else if (opcao2.equals("4")) {
+                        } else if (menu.getOpcao2().equals("4")) {
                             menu.relCargo();
-                        } else if (opcao2.equals("5")) {
+                        } else if (menu.getOpcao2().equals("5")) {
                             menu.relFuncionario();
-                        } else if (opcao2.equals("6")) {
+                        } else if (menu.getOpcao2().equals("6")) {
                             menu.relCliente();
-                        } else if (opcao2.equals("7")) {
+                        } else if (menu.getOpcao2().equals("7")) {
                             menu.relBalanca();
-                        } else if (opcao2.equals("8")) {
+                        } else if (menu.getOpcao2().equals("8")) {
                             menu.relCaixa();
-                        } else if (opcao2.equals("0")) {
-                            opcao = menu.menuInicial();
+                        } else if (menu.getOpcao2().equals("0")) {
+                        	menu.setOpcao( menu.menuInicial()) ;
                         }
                     } else {
                         JOptionPane.showMessageDialog(null, "Por favor digite uma opção correta.");
-                        opcao = menu.menuInicial();
+                        menu.setOpcao( menu.menuInicial()) ;
 
                     }
+                }
+                
+                if (menu.getOpcao().equals("3")) {//Se venda
+                	menu.venda();               	
                 }
 
             } else {
                 JOptionPane.showMessageDialog(null, "Por favor digite uma opção correta.");
-                opcao = menu.menuInicial();
+                menu.setOpcao(menu.menuInicial());
             }
         }
     }

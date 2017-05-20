@@ -46,5 +46,9 @@ public class Pessoa extends ItemDeLista {
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
+	
+	public String toString() {
+		return( this.nome );
+	}
 
 }

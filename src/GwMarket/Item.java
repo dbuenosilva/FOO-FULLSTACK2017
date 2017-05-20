@@ -63,4 +63,8 @@ public class Item extends ItemDeLista {
     	return(0);
     }
 
+    public String toString() {
+    	return(    this.produto + " | " + this.quantidade + " " + this.unidadeDeMedida + " | R$ " + valorUnitario);
+    }
+    
 }

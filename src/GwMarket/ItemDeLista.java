@@ -13,7 +13,7 @@ public class ItemDeLista {
 	 * 
 	 */
 	public ItemDeLista() {
-		// TODO Stub de construtor gerado automaticamente
+		
 	}
 
 }

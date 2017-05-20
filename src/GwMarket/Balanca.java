@@ -47,7 +47,7 @@ public class Balanca extends ItemDeLista{
     }
     @Override
     public String toString(){   
-        return("Codigo : "+getId()+", Descrição : "+ ", Peso : "+getPeso());
+        return( getId() + " - " + getDescricao() );
     }
 
 }

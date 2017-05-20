@@ -183,10 +183,7 @@ public class Produto extends ItemDeLista implements ListadeCodigosDeMensagensDeE
 
     @Override
     public String toString() {
-        return ("Codigo : " + getId() + ", Descrição : " + getDescricao() + ", Primeira Und.Medida" + getPrimeiraUnidadeDeMedida() + ", "
-                + "Segunda Und.Medida : " + getSegundaUnidadeDeMedida() + ", " + getPrecoNaPrimeiraUnidadeDeMedida() + ", "
-                + "Fator de Conversão : " + getFatorDeConversao() + ", Tipo de Conversão : " + getTipoDeConversao() + ", "
-                + "Saldo : " + getSaldoDoEstoqueNaPrimeiraUnidadeDeMedida()  + "\n"); 
+        return ( getId() + " - " + getDescricao() + "\n"); 
     }
 
 }

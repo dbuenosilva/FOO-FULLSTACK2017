@@ -42,7 +42,7 @@ public class FormaDePagamento extends ItemDeLista {
     
     @Override
     public String toString(){  
-        return("Codigo : "+getId()+", Descrição : "+getDescricao()+( ! this.permiteTroco  ? ", Troco : Não" : ", Troco : Sim")+ "\n");
+        return( getId() + " - " + getDescricao() + "\n");
     }
 }
    

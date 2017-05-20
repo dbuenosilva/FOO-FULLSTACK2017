@@ -46,6 +46,6 @@ public class UnidadeDeMedida extends ItemDeLista{
     
    @Override
     public String toString(){  
-        return("Codigo : "+getId()+", Descrição : "+getDescricao()+( ! this.utilizaBalanca  ? ", Utiliza Balança ? Não" : ", Utiliza Balança ? Sim")+ "\n");
+        return(getId()+" - "+getDescricao() + "\n");
     }
 }

@@ -3,6 +3,7 @@ package GwMarket;
 public class Caixa extends ItemDeLista implements ListadeCodigosDeMensagensDeErros {
 
     private String id;
+    private String descricao;
     private Balanca balanca;
     private Funcionario operador;
     private Venda vendaSendoRealiza;
@@ -10,9 +11,10 @@ public class Caixa extends ItemDeLista implements ListadeCodigosDeMensagensDeErr
     public Caixa() {
     }
 
-    public Caixa(String id, Balanca balanca) {
+    public Caixa(String id, String descricao, Balanca balanca) {
 
         this.id = id;
+        this.descricao = descricao;
         this.balanca = balanca;
 
     }
@@ -28,6 +30,14 @@ public class Caixa extends ItemDeLista implements ListadeCodigosDeMensagensDeErr
 
     public void setId(String id) {
         this.id = id;
+    }
+    
+    public String getDescricao(){
+    	return(this.descricao);
+    }
+    
+    public void setDescricao(String descricao) {
+    	this.descricao = descricao;
     }
 
     public Funcionario getOperador() {
@@ -98,7 +108,7 @@ public class Caixa extends ItemDeLista implements ListadeCodigosDeMensagensDeErr
         return (SUCESSO);
     }
 
-    public int leProximoItem(Produto produto, double quantidade, UnidadeDeMedida unidadeDeMedida) {
+    public int addItemNaVenda(Produto produto, double quantidade, UnidadeDeMedida unidadeDeMedida) {
 
         if (produto.checarEstoque(quantidade, unidadeDeMedida) == SUCESSO
                 && produto.atualizaEstoque(quantidade * (-1), unidadeDeMedida) == SUCESSO) {
@@ -123,7 +133,7 @@ public class Caixa extends ItemDeLista implements ListadeCodigosDeMensagensDeErr
     
      @Override
     public String toString(){
-        return("Codigo do caixa : "+getId()+", Balança : "+getBalanca());
+        return( getId() + " - "+getDescricao());
     }   
 
 }

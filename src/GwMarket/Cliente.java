@@ -29,7 +29,7 @@ public class Cliente extends Pessoa {
 
     @Override
     public String toString() {
-        return ("Codigo : " + this.getCodigo()+ ", Endreço : " + this.getEndereco()+ ", Nome : "+super.getNome()+ ", Nascimento : "+super.getNascimento().toString()+ ", Cpf : "+getCPF()+ ", Rg : "+getRg()+"\n");
+        return ( getCodigo()+ " - " + super.getNome() + "\n");
     }
 
 }

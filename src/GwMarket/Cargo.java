@@ -55,7 +55,7 @@ public class Cargo extends ItemDeLista {
 
     @Override
     public String toString() {
-        return ("Codigo : " + getId() + ", Descrição : " + getDescricao() + (!this.getAcessoVenda() ? ", Vai ter acesso a Venda ? Não" : ", Vai ter acesso a Venda ? Sim") + (!this.getAcessoAoEstoque() ? ", Vai ter acesso ao estoque ? Não" : ", Vai ter acesso ao estoque ? Sim") + "\n");
+        return ( getId() + " - " + getDescricao() + "\n");
     }
 
 }

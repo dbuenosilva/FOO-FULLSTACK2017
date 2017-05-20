@@ -1,6 +1,7 @@
 
 package GwMarket;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class ListaDeObjetos {
@@ -29,8 +30,14 @@ public class ListaDeObjetos {
 		return(this.listaDeObjetos);
 	}
 	
-	public void imprimeCadastro() {
-		
+	public String imprimeLista( Object obj) {
+		String impressaoObj = "";
+        Iterator i = this.getLista().iterator();
+        while (i.hasNext()) {
+        	 obj =  i.next();
+        	impressaoObj += obj.toString();
+        }
+        return(impressaoObj);
 	}
 	
 }

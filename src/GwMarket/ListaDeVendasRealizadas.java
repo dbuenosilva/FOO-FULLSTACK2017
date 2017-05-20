@@ -5,7 +5,7 @@ public class ListaDeVendasRealizadas {
 	private Venda vendas[];
 
 	public ListaDeVendasRealizadas() {
-
+		
 	}
 
 	public void addVenda(Venda venda) {
