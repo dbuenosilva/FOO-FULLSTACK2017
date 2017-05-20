@@ -109,7 +109,7 @@ public class Venda extends ItemModel {
         	ItemDaVenda itemDaVenda = (ItemDaVenda) i.next(); 
             impressao += " " + itemDaVenda + "\n";
         }
-        return( impressao );
+        return( impressao + "\n"+ "\n"+ "\n");
     }
     
 }

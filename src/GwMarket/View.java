@@ -301,7 +301,7 @@ public class View implements ListadeCodigosDeMensagensDeErros {
 
         while (i.hasNext()) {
             Produto p = (Produto) i.next();
-            this.impressao += p + "\n";
+            this.impressao += p.imprimeProd() + "\n";
         }
         JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Produtos", JOptionPane.PLAIN_MESSAGE);
 

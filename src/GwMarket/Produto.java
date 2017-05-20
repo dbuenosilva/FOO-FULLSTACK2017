@@ -188,7 +188,12 @@ public class Produto extends ItemModel implements ListadeCodigosDeMensagensDeErr
 
     @Override
     public String toString() {
-        return ( "Codigo : " + getId() + " - " + ", Descrição : "+ getDescricao()+", Saldo : "+this.saldoDoEstoqueNaPrimeiraUnidadeDeMedida+ ", Preço"+getPrecoNaPrimeiraUnidadeDeMedida() ); 
+        return ( getId() + " - " +  getDescricao()); 
     }
 
+        public String imprimeProd() {
+        return ( "Codigo : " + getId() + " - " + ", Descrição : "+ getDescricao()+", Saldo : "+this.saldoDoEstoqueNaPrimeiraUnidadeDeMedida+ ", Preço"+getPrecoNaPrimeiraUnidadeDeMedida() ); 
+    }
+    
+    
 }
