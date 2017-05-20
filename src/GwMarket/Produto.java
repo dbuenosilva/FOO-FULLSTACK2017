@@ -188,7 +188,7 @@ public class Produto extends ItemModel implements ListadeCodigosDeMensagensDeErr
 
     @Override
     public String toString() {
-        return ( getId() + " - " + getDescricao() ); 
+        return ( "Codigo : " + getId() + " - " + ", Descrição : "+ getDescricao()+", Saldo : "+this.saldoDoEstoqueNaPrimeiraUnidadeDeMedida+ ", Preço"+getPrecoNaPrimeiraUnidadeDeMedida() ); 
     }
 
 }

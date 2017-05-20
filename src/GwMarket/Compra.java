@@ -1,5 +1,7 @@
 package GwMarket;
 
+import java.util.Iterator;
+
 public class Compra extends ItemModel {
 
     private Data data;
@@ -24,6 +26,19 @@ public class Compra extends ItemModel {
 
     public Model getItens() {
         return (this.itens);
+    }
+    
+     public String toString() {
+        String impressao = "Data: " + this.getData()+ "\n";
+     
+        
+        Iterator i = this.getItens().getLista().iterator();
+
+        while (i.hasNext()) {
+        	ItemDaCompra itemDaCompra = (ItemDaCompra) i.next(); 
+            impressao += " " + itemDaCompra + "\n";
+        }
+        return( impressao );
     }
  
 }

@@ -118,6 +118,7 @@ public class Caixa extends ItemModel implements ListadeCodigosDeMensagensDeErros
         if (produto.checarEstoque(quantidade*(-1), unidadeDeMedida) == SUCESSO
                 && produto.atualizaEstoque(quantidade * (-1), unidadeDeMedida) == SUCESSO) {
         	this.vendaSendoRealiza.getItens().adicionaNaLista(new ItemDaVenda(produto, quantidade, unidadeDeMedida));
+                this.vendaSendoRealiza.setValorTotalDaVenda( this.vendaSendoRealiza.getValorTotalDaVenda() + quantidade);
         } else {
             return (ERR_SALDO);
         }

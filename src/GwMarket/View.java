@@ -549,15 +549,13 @@ public class View implements ListadeCodigosDeMensagensDeErros {
 
     public void relCompra() {
 
-        this.impressao = "";
-        Iterator i = relacaoDeComprasRealizadas.getLista().iterator();
+         Iterator i = relacaoDeComprasRealizadas.getLista().iterator();
 
         while (i.hasNext()) {
-            ItemDaCompra ic = (ItemDaCompra) i.next();
-            this.impressao += ic;
+            Compra compra = (Compra) i.next();
+            this.impressao += compra;
         }
-
-        JOptionPane.showMessageDialog(null, this.impressao, "Relatório de Compras", JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, this.impressao, "Relatório de compras", JOptionPane.PLAIN_MESSAGE);
 
     }
 

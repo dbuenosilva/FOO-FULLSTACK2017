@@ -101,11 +101,7 @@ public class Venda extends ItemModel {
     
     public String toString() {
         String impressao = "Data: " + this.getData() + " | Cliente: " + this.getCliente() + " | Valor Total da Venda: " + this.getValorTotalDaVenda() + "\n";
-        impressao += "----------------------------------------------------------------------------------------------------------";
-//        impressao += "Operador: " + this.getCaixa().getOperador().toString() + " | Caixa: " + this.getCaixa().toString() + " | Balança: " + this.getCaixa().getBalanca().toString(); 
-
-        impressao += "----------------------------------------------------------------------------------------------------------";
-        impressao += "Produto-------------------Quantidade-----------Unidade Medida ---------------------Preço------------------";
+     
         
         Iterator i = this.getItens().getLista().iterator();
 

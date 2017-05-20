@@ -64,7 +64,7 @@ public class ItemDaCompra extends ItemModel {
     }
 
     public String toString() {
-    	return(    this.produto + " | " + this.quantidade + " " + this.unidadeDeMedida + " | R$ " + valorUnitario);
+    	return(   "Produto : "+ this.produto + " | " + ", Quantidade :"+ this.quantidade + " , Unidade de medida" + this.unidadeDeMedida);
     }
     
 }
